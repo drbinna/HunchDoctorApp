@@ -153,7 +153,8 @@ export function HunchJournal() {
 
   return (
     <div
-      className="flex flex-col min-h-screen relative"
+      className="flex flex-col min-h-screen"
+      style={{ background: '#0a0a0f' }}
     >
       {/* Nav bar */}
       <div style={{

@@ -368,7 +368,7 @@ export function HunchCompass() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen" style={{ background: '#0a0a0f' }}>
 
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-5 pb-3">

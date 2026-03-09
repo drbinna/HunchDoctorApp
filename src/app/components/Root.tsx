@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router';
 import { AppProvider } from '../store';
-import DemoOne from './ui/demo';
 
 export function Root() {
   return (
@@ -12,26 +11,17 @@ export function Root() {
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          position: 'relative',
         }}
       >
-        {/* Global Cinematic Background */}
-        <div style={{ position: 'fixed', inset: 0, zIndex: 0, overflow: 'hidden' }}>
-          <DemoOne className="w-full h-full object-cover" />
-        </div>
-
         {/* Phone frame on wide screens */}
         <div
           style={{
             width: '100%',
             maxWidth: '430px',
             minHeight: '100vh',
-            // Changed from solid #0a0a0f to translucent to let the shader bleed through
-            background: 'rgba(10, 10, 15, 0.2)',
-            backdropFilter: 'blur(20px)',
+            background: '#0a0a0f',
             position: 'relative',
             overflow: 'hidden',
-            zIndex: 1, // ensure content sits above the global background
           }}
         >
           <Outlet />

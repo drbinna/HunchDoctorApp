@@ -253,7 +253,7 @@ function VoiceScreenInner({
   }, [stopEVI, navigate, voiceSignal]);
 
   return (
-    <div className="flex flex-col min-h-screen" style={{ position: 'relative', overflow: 'hidden' }}>
+    <div className="flex flex-col min-h-screen" style={{ background: '#0a0a0f', position: 'relative', overflow: 'hidden' }}>
 
       {/* Ambient glow */}
       <motion.div

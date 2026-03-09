@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { useNavigate } from 'react-router';
 import { AvatarOrb } from './AvatarOrb';
 import { getGreeting } from './signals';
+import DemoOne from './ui/demo';
 import { ShimmerButton } from './ui/shimmer-button';
 
 export function WelcomeScreen() {
@@ -10,6 +11,11 @@ export function WelcomeScreen() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <DemoOne className="w-full h-full object-cover" />
+      </div>
+
       {/* Foreground Content */}
       <div className="relative z-10 flex flex-col items-center px-5 w-full">
         {/* Avatar */}
