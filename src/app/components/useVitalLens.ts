@@ -177,11 +177,27 @@ interface VitalLensAPIResult {
 
 function extractVitals(data: VitalLensAPIResult): { hr: number | null; rr: number | null } {
   // Handle both nested { vitals: {...} } and flat { heart_rate: {...} }
-  const hr = data.vitals?.heart_rate?.value ?? data.heart_rate?.value ?? null;
-  const rr = data.vitals?.respiratory_rate?.value ?? data.respiratory_rate?.value ?? null;
+  const hrEntry = data.vitals?.heart_rate ?? data.heart_rate;
+  const rrEntry = data.vitals?.respiratory_rate ?? data.respiratory_rate;
+
+  const hrVal = hrEntry?.value ?? null;
+  const rrVal = rrEntry?.value ?? null;
+  const hrConf = hrEntry?.confidence ?? 0;
+  const rrConf = rrEntry?.confidence ?? 0;
+
+  console.log(`[VitalLens/API Extraction] HR: ${hrVal} (conf: ${hrConf.toFixed(2)}), RR: ${rrVal} (conf: ${rrConf.toFixed(2)})`);
+
+  // Reject readings with very low confidence
+  const MIN_CONFIDENCE = 0.35;
+  const isValidHr = hrVal !== null && hrConf >= MIN_CONFIDENCE;
+  const isValidRr = rrVal !== null && rrConf >= MIN_CONFIDENCE;
+
+  if (hrVal !== null && !isValidHr) console.warn(`[VitalLens/API] HR rejected due to low confidence (${hrConf.toFixed(2)})`);
+  if (rrVal !== null && !isValidRr) console.warn(`[VitalLens/API] RR rejected due to low confidence (${rrConf.toFixed(2)})`);
+
   return {
-    hr: hr !== null ? Math.round(hr) : null,
-    rr: rr !== null ? Math.round(rr) : null,
+    hr: isValidHr ? Math.round(hrVal) : null,
+    rr: isValidRr ? Math.round(rrVal) : null,
   };
 }
 
