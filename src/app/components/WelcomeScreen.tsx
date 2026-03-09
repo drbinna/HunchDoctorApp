@@ -51,9 +51,9 @@ export function WelcomeScreen() {
           animate={{ opacity: 0.85, y: 0 }}
           transition={{ delay: 0.7, duration: 1 }}
           style={{
-            fontFamily: 'Cormorant Garamond, Georgia, serif',
-            fontSize: '20px',
-            fontStyle: 'italic',
+            fontFamily: "'Cabinet Grotesk', sans-serif",
+            fontSize: '22px',
+            fontWeight: 500,
             color: 'white',
             textAlign: 'center',
             lineHeight: 1.5,
@@ -77,9 +77,9 @@ export function WelcomeScreen() {
             style={{
               width: '100%',
               height: '56px',
-              fontFamily: 'Cormorant Garamond, Georgia, serif',
+              fontFamily: "'Cabinet Grotesk', sans-serif",
               fontSize: '22px',
-              fontStyle: 'italic',
+              fontWeight: 500,
               letterSpacing: '0.5px',
               boxShadow: '0 4px 14px rgba(255,255,255,0.05)',
               border: '1px solid rgba(255,255,255,0.2)',
