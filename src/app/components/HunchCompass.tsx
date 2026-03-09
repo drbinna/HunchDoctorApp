@@ -402,16 +402,16 @@ export function HunchCompass() {
                 style={{
                   position: 'absolute', inset: -10,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(79,209,197,0.35) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 70%)',
                 }}
               />
               <div style={{
                 width: 88, height: 88, borderRadius: '50%',
-                background: 'rgba(79,209,197,0.08)',
-                border: '1px solid rgba(79,209,197,0.25)',
+                background: 'rgba(255,255,255,0.08)',
+                border: '1px solid rgba(255,255,255,0.25)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <Camera size={32} color="rgba(79,209,197,0.8)" />
+                <Camera size={32} color="rgba(255,255,255,0.8)" />
               </div>
             </div>
 
@@ -449,12 +449,12 @@ export function HunchCompass() {
                     transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
                     style={{
                       width: 44, height: 44, borderRadius: '50%',
-                      background: 'rgba(79,209,197,0.1)',
-                      border: '1px solid rgba(79,209,197,0.4)',
+                      background: 'rgba(255,255,255,0.1)',
+                      border: '1px solid rgba(255,255,255,0.4)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}
                   >
-                    <Camera size={18} color="rgba(79,209,197,0.85)" />
+                    <Camera size={18} color="rgba(255,255,255,0.85)" />
                   </motion.div>
                   <span style={{
                     fontFamily: 'Inter, sans-serif', fontSize: '10px',
@@ -478,8 +478,8 @@ export function HunchCompass() {
                     transition={{ repeat: Infinity, duration: 1.6, ease: 'linear' }}
                     style={{
                       width: 18, height: 18, borderRadius: '50%',
-                      border: '2px solid rgba(79,209,197,0.15)',
-                      borderTopColor: 'rgba(79,209,197,0.7)',
+                      border: '2px solid rgba(255,255,255,0.15)',
+                      borderTopColor: 'rgba(255,255,255,0.7)',
                     }}
                   />
                   <span style={{
@@ -520,10 +520,10 @@ export function HunchCompass() {
                     overflow: 'hidden',
                     background: '#0d0d18',
                     border: cameraLive
-                      ? '1px solid rgba(79,209,197,0.4)'
+                      ? '1px solid rgba(255,255,255,0.4)'
                       : '1px solid rgba(255,255,255,0.08)',
                     boxShadow: cameraLive
-                      ? '0 0 24px rgba(79,209,197,0.15), inset 0 0 40px rgba(0,0,0,0.6)'
+                      ? '0 0 24px rgba(255,255,255,0.15), inset 0 0 40px rgba(0,0,0,0.6)'
                       : 'inset 0 0 40px rgba(0,0,0,0.6)',
                     transition: 'border-color 0.6s ease, box-shadow 0.6s ease',
                     minHeight: '200px',
@@ -572,7 +572,7 @@ export function HunchCompass() {
                             animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
                             transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
                           >
-                            <Camera size={28} color="rgba(79,209,197,0.5)" />
+                            <Camera size={28} color="rgba(255,255,255,0.5)" />
                           </motion.div>
                         )}
                         <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase' }}>
@@ -592,7 +592,7 @@ export function HunchCompass() {
                         left: 0,
                         right: 0,
                         height: '2px',
-                        background: 'linear-gradient(90deg, transparent, rgba(79,209,197,0.6), transparent)',
+                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
                         pointerEvents: 'none',
                         zIndex: 3,
                       }}
@@ -601,11 +601,11 @@ export function HunchCompass() {
 
                   {/* Corner brackets — top left */}
                   <div style={{ position: 'absolute', top: 10, left: 10, zIndex: 4, pointerEvents: 'none' }}>
-                    <div style={{ width: 14, height: 14, borderTop: '1.5px solid rgba(79,209,197,0.6)', borderLeft: '1.5px solid rgba(79,209,197,0.6)', borderRadius: '2px 0 0 0' }} />
+                    <div style={{ width: 14, height: 14, borderTop: '1.5px solid rgba(255,255,255,0.6)', borderLeft: '1.5px solid rgba(255,255,255,0.6)', borderRadius: '2px 0 0 0' }} />
                   </div>
                   {/* Corner brackets — bottom right */}
                   <div style={{ position: 'absolute', bottom: 10, right: 10, zIndex: 4, pointerEvents: 'none' }}>
-                    <div style={{ width: 14, height: 14, borderBottom: '1.5px solid rgba(79,209,197,0.6)', borderRight: '1.5px solid rgba(79,209,197,0.6)', borderRadius: '0 0 2px 0' }} />
+                    <div style={{ width: 14, height: 14, borderBottom: '1.5px solid rgba(255,255,255,0.6)', borderRight: '1.5px solid rgba(255,255,255,0.6)', borderRadius: '0 0 2px 0' }} />
                   </div>
 
                   {/* Dark vignette overlay */}
@@ -631,12 +631,12 @@ export function HunchCompass() {
                       backdropFilter: 'blur(6px)',
                       borderRadius: '999px',
                       padding: '3px 8px',
-                      border: '1px solid rgba(79,209,197,0.3)',
+                      border: '1px solid rgba(255,255,255,0.3)',
                     }}>
                       <motion.div
                         animate={{ opacity: [1, 0.2, 1] }}
                         transition={{ repeat: Infinity, duration: 1.2 }}
-                        style={{ width: 5, height: 5, borderRadius: '50%', background: '#4FD1C5' }}
+                        style={{ width: 5, height: 5, borderRadius: '50%', background: '#ffffff' }}
                       />
                       <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '8px', letterSpacing: '1.5px', color: 'rgba(255,255,255,0.7)' }}>LIVE</span>
                     </div>
@@ -652,7 +652,7 @@ export function HunchCompass() {
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', color: 'rgba(79,209,197,0.6)', textTransform: 'uppercase' }}
+                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase' }}
                       >
                         detecting expression
                       </motion.span>
@@ -677,7 +677,7 @@ export function HunchCompass() {
               <div className="flex items-center gap-2">
                 {cameraBlocked
                   ? <CameraOff size={10} color="rgba(255,255,255,0.3)" />
-                  : <Camera size={10} color="rgba(79,209,197,0.6)" />
+                  : <Camera size={10} color="rgba(255,255,255,0.6)" />
                 }
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -692,7 +692,7 @@ export function HunchCompass() {
                       letterSpacing: '3px',
                       color: scanSubLabel === 'MEASURING VITALS'
                         ? 'rgba(246,173,85,0.7)'
-                        : cameraBlocked ? 'rgba(255,255,255,0.3)' : 'rgba(79,209,197,0.6)',
+                        : cameraBlocked ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.6)',
                       textTransform: 'uppercase',
                     }}
                   >
@@ -705,7 +705,7 @@ export function HunchCompass() {
                   height: '100%',
                   background: scanSubLabel === 'MEASURING VITALS'
                     ? 'rgba(246,173,85,0.7)'
-                    : cameraBlocked ? 'rgba(255,255,255,0.2)' : '#4FD1C5',
+                    : cameraBlocked ? 'rgba(255,255,255,0.2)' : '#ffffff',
                   borderRadius: '2px',
                   width: `${scanProgress}%`,
                   transition: 'width 0.15s linear, background 0.6s ease',
@@ -737,14 +737,14 @@ export function HunchCompass() {
           >
             {/* Biometric strip */}
             <div className="flex justify-center gap-6 pb-1" style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '2px', color: 'rgba(255,255,255,0.3)' }}>
-              <span style={{ color: hrIsReal ? 'rgba(79,209,197,0.7)' : 'rgba(255,255,255,0.3)' }}>
+              <span style={{ color: hrIsReal ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.3)' }}>
                 HR {hr} bpm{hrIsReal ? ' ●' : ' ○'}
               </span>
-              <span style={{ color: rrIsReal ? 'rgba(79,209,197,0.7)' : 'rgba(255,255,255,0.3)' }}>
+              <span style={{ color: rrIsReal ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.3)' }}>
                 RESP {rr}/min{rrIsReal ? ' ●' : ' ○'}
               </span>
               {usedCamera ? (
-                <span style={{ color: 'rgba(79,209,197,0.5)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <span style={{ color: 'rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Camera size={9} /> LIVE
                 </span>
               ) : (
