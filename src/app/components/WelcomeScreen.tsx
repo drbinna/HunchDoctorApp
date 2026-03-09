@@ -81,12 +81,13 @@ export function WelcomeScreen() {
               fontSize: '22px',
               fontWeight: 500,
               letterSpacing: '0.5px',
-              boxShadow: '0 4px 14px rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.2)',
+              background: 'transparent',
+              border: 'none',
+              boxShadow: 'none',
             }}
             className="w-full text-white"
             borderRadius="999px"
-            background="rgba(255,255,255,0.06)"
+            background="transparent"
             shimmerColor="rgba(255,255,255,0.4)"
             shimmerSize="0.1em"
             shimmerDuration="3s"
