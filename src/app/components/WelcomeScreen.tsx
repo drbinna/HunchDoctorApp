@@ -80,12 +80,12 @@ export function WelcomeScreen() {
               fontFamily: 'Inter, sans-serif',
               fontSize: '16px',
               letterSpacing: '0.5px',
-              backdropFilter: 'blur(12px)',
+              boxShadow: '0 4px 14px rgba(255,255,255,0.1)',
             }}
-            className="w-full text-white font-medium"
+            className="w-full text-[#0a0a0f] font-medium border-none"
             borderRadius="999px"
-            background="rgba(255,255,255,0.08)"
-            shimmerColor="rgba(255,255,255,0.6)"
+            background="#ffffff"
+            shimmerColor="rgba(0,0,0,0.15)"
             shimmerSize="0.1em"
             shimmerDuration="3s"
           >
