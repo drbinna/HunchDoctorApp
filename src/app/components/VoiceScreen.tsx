@@ -311,15 +311,16 @@ function VoiceScreenInner({
                   onClick={startEVI} disabled={!keysConfigured} whileTap={{ scale: 0.97 }}
                   style={{
                     width: '100%', height: 52, borderRadius: 999,
-                    background: keysConfigured ? 'rgba(79,209,197,0.12)' : 'rgba(255,255,255,0.04)',
-                    border: keysConfigured ? '1px solid rgba(79,209,197,0.35)' : '1px solid rgba(255,255,255,0.1)',
-                    color: keysConfigured ? '#4FD1C5' : 'rgba(255,255,255,0.2)',
-                    fontFamily: 'Inter, sans-serif', fontSize: '14px',
-                    cursor: keysConfigured ? 'pointer' : 'not-allowed', letterSpacing: '1px',
+                    background: keysConfigured ? '#ffffff' : 'rgba(255,255,255,0.04)',
+                    border: keysConfigured ? 'none' : '1px solid rgba(255,255,255,0.1)',
+                    color: keysConfigured ? '#0a0a0f' : 'rgba(255,255,255,0.2)',
+                    fontFamily: 'Inter, sans-serif', fontSize: '15px', fontWeight: 500,
+                    cursor: keysConfigured ? 'pointer' : 'not-allowed', letterSpacing: '0.5px',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    boxShadow: keysConfigured ? '0 4px 14px rgba(255,255,255,0.1)' : 'none',
                   }}
                 >
-                  <Mic size={15} /> Begin conversation
+                  <Mic size={16} strokeWidth={2.5} /> Begin conversation
                 </motion.button>
                 <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: 'Inter, sans-serif', fontSize: '12px', cursor: 'pointer', padding: '10px 20px' }}>
                   Skip — go straight to scan
