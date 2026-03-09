@@ -116,7 +116,6 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
       <p style={{
         fontFamily: "'Cabinet Grotesk', sans-serif",
         fontSize: '16px',
-        ,
         color: 'rgba(255,255,255,0.82)',
         lineHeight: 1.65,
         margin: 0,
@@ -210,75 +209,75 @@ export function HunchJournal() {
                   <p style={{
                     fontFamily: "'Cabinet Grotesk', sans-serif",
                     fontSize: '16px',
-                    ,
+
                     color: 'rgba(255,255,255,0.82)',
-                    lineHeight: 1.6,
-                    margin: 0,
+                  lineHeight: 1.6,
+                  margin: 0,
                   }}>
-                    {pattern}
-                  </p>
-                </div>
+                  {pattern}
+                </p>
               </div>
+            </div>
             </motion.div>
           )}
-        </AnimatePresence>
+      </AnimatePresence>
 
-        {/* Empty state */}
-        {journalEntries.length === 0 && (
-          <div className="flex flex-col items-center justify-center" style={{ paddingTop: '80px' }}>
-            <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', lineHeight: 1.6 }}>
-              Your journal is empty.<br />Begin a session to create your first entry.
-            </p>
-          </div>
-        )}
+      {/* Empty state */}
+      {journalEntries.length === 0 && (
+        <div className="flex flex-col items-center justify-center" style={{ paddingTop: '80px' }}>
+          <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', lineHeight: 1.6 }}>
+            Your journal is empty.<br />Begin a session to create your first entry.
+          </p>
+        </div>
+      )}
 
-        {/* Entry groups */}
-        {grouped.map(([dateLabel, entries]) => (
-          <div key={dateLabel} style={{ marginBottom: '28px' }}>
-            <span style={{
-              fontFamily: "'Cabinet Grotesk', sans-serif",
-              fontSize: '11px',
-              letterSpacing: '3px',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.3)',
-              display: 'block',
-              marginBottom: '12px',
-            }}>
-              {dateLabel}
-            </span>
-            <div className="flex flex-col gap-3">
-              {entries.map(entry => (
-                <EntryCard key={entry.id} entry={entry} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom CTA */}
-      <div style={{
-        position: 'sticky',
-        bottom: 0,
-        padding: '16px 20px 32px',
-        background: 'linear-gradient(to top, rgba(10,10,15,1) 60%, transparent)',
-      }}>
-        <button
-          onClick={() => navigate(nextCheckInRoute)}
-          style={{
-            width: '100%',
-            height: '50px',
-            borderRadius: '999px',
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            color: 'rgba(255,255,255,0.6)',
+      {/* Entry groups */}
+      {grouped.map(([dateLabel, entries]) => (
+        <div key={dateLabel} style={{ marginBottom: '28px' }}>
+          <span style={{
             fontFamily: "'Cabinet Grotesk', sans-serif",
-            fontSize: '14px',
-            cursor: 'pointer',
-          }}
-        >
-          New check-in
-        </button>
-      </div>
+            fontSize: '11px',
+            letterSpacing: '3px',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.3)',
+            display: 'block',
+            marginBottom: '12px',
+          }}>
+            {dateLabel}
+          </span>
+          <div className="flex flex-col gap-3">
+            {entries.map(entry => (
+              <EntryCard key={entry.id} entry={entry} />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
+
+      {/* Bottom CTA */ }
+  <div style={{
+    position: 'sticky',
+    bottom: 0,
+    padding: '16px 20px 32px',
+    background: 'linear-gradient(to top, rgba(10,10,15,1) 60%, transparent)',
+  }}>
+    <button
+      onClick={() => navigate(nextCheckInRoute)}
+      style={{
+        width: '100%',
+        height: '50px',
+        borderRadius: '999px',
+        background: 'rgba(255,255,255,0.06)',
+        border: '1px solid rgba(255,255,255,0.1)',
+        color: 'rgba(255,255,255,0.6)',
+        fontFamily: "'Cabinet Grotesk', sans-serif",
+        fontSize: '14px',
+        cursor: 'pointer',
+      }}
+    >
+      New check-in
+    </button>
+  </div>
+    </div >
   );
 }
