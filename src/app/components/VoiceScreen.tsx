@@ -275,7 +275,7 @@ function VoiceScreenInner({
       <div className="flex items-center justify-between px-5 pt-5 pb-3" style={{ position: 'relative', zIndex: 10 }}>
         <div className="flex items-center gap-3">
           <AvatarOrb size={36} />
-          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
+          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontWeight: 'bold', fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
             HunchDoctor
           </span>
         </div>

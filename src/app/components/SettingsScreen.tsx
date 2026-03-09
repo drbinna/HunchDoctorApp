@@ -249,7 +249,7 @@ export function SettingsScreen() {
         </p>
 
         <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
-          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '2px', color: 'rgba(255,255,255,0.15)' }}>
+          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontWeight: 'bold', fontSize: '11px', letterSpacing: '2px', color: 'rgba(255,255,255,0.15)' }}>
             HUNCHDOCTOR · FIGBUILD 2026
           </span>
         </div>

@@ -134,8 +134,8 @@ export function CompassWeb({ signals, dominantSignal, size = 280, revealed = tru
             textAnchor={TEXT_ANCHORS[i]}
             fill={isDominant ? color : 'rgba(255,255,255,0.35)'}
             fontSize="9"
-            letterSpacing="2"
-            fontFamily="Inter, sans-serif"
+            letterSpacing="2.5"
+            fontFamily="'Cabinet Grotesk', sans-serif"
             style={{ transition: 'fill 0.8s ease' }}
           >
             {SIGNAL_CONFIG[name].label}

@@ -35,6 +35,7 @@ export function WelcomeScreen() {
           transition={{ delay: 0.4, duration: 1 }}
           style={{
             fontFamily: "'Cabinet Grotesk', sans-serif",
+            fontWeight: 'bold',
             fontSize: '13px',
             letterSpacing: '6px',
             textTransform: 'uppercase',
