@@ -252,6 +252,11 @@ function VoiceScreenInner({
     navigate('/compass', { state: { voiceSignal } });
   }, [stopEVI, navigate, voiceSignal]);
 
+  const handleCancel = useCallback(() => {
+    stopEVI();
+    navigate('/');
+  }, [stopEVI, navigate]);
+
   return (
     <div className="flex flex-col min-h-screen" style={{ background: '#0a0a0f', position: 'relative', overflow: 'hidden' }}>
 
@@ -274,7 +279,7 @@ function VoiceScreenInner({
             HunchDoctor
           </span>
         </div>
-        <button onClick={handleSkip} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', color: 'rgba(255,255,255,0.3)' }}>
+        <button onClick={handleCancel} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', color: 'rgba(255,255,255,0.3)' }}>
           <X size={18} />
         </button>
       </div>
