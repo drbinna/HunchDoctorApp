@@ -28,9 +28,9 @@ import { useRef, useState, useCallback } from 'react';
 const PROXY_URL = '/api/vitallens-proxy';
 
 // ── POS constants ─────────────────────────────────────────────────────────────
-const FPS         = 30;
+const FPS = 30;
 const MAX_SAMPLES = 900;   // 30 s @ 30 fps
-const MIN_FRAMES  = 150;   // 5 s minimum
+const MIN_FRAMES = 150;   // 5 s minimum
 
 // ─────────────────────────────────────────────────────────────────────────────
 // POS algorithm helpers (Path B)
@@ -56,26 +56,26 @@ function fft(re: Float64Array, im: Float64Array): void {
   }
   for (let len = 2; len <= n; len <<= 1) {
     const half = len >> 1;
-    const ang  = (-2 * Math.PI) / len;
+    const ang = (-2 * Math.PI) / len;
     const wr = Math.cos(ang), wi = Math.sin(ang);
     for (let i = 0; i < n; i += len) {
       let tr = 1, ti = 0;
       for (let j = 0; j < half; j++) {
-        const ur = re[i+j],         ui = im[i+j];
-        const vr = re[i+j+half]*tr - im[i+j+half]*ti;
-        const vi = re[i+j+half]*ti + im[i+j+half]*tr;
-        re[i+j]      = ur+vr;  im[i+j]      = ui+vi;
-        re[i+j+half] = ur-vr;  im[i+j+half] = ui-vi;
-        const nr = tr*wr - ti*wi; ti = tr*wi + ti*wr; tr = nr;
+        const ur = re[i + j], ui = im[i + j];
+        const vr = re[i + j + half] * tr - im[i + j + half] * ti;
+        const vi = re[i + j + half] * ti + im[i + j + half] * tr;
+        re[i + j] = ur + vr; im[i + j] = ui + vi;
+        re[i + j + half] = ur - vr; im[i + j + half] = ui - vi;
+        const nr = tr * wr - ti * wi; ti = tr * wi + ti * wr; tr = nr;
       }
     }
   }
 }
 
 function pos(rgb: [number, number, number][]): number[] {
-  const R = rgb.map(([r])    => r);
-  const G = rgb.map(([,g])   => g);
-  const B = rgb.map(([,,b])  => b);
+  const R = rgb.map(([r]) => r);
+  const G = rgb.map(([, g]) => g);
+  const B = rgb.map(([, , b]) => b);
   const mR = mean(R), mG = mean(G), mB = mean(B);
   if (mR < 1 || mG < 1 || mB < 1) return R.map(() => 0);
   const Rn = R.map(r => r / mR);
@@ -89,6 +89,7 @@ function pos(rgb: [number, number, number][]): number[] {
 }
 
 function bandpass(signal: number[], fps: number, loHz: number, hiHz: number): number[] {
+  // A slightly sharper bandpass using a dual moving-average filter
   const nLo = Math.max(2, Math.round(fps / hiHz));
   const nHi = Math.max(nLo + 2, Math.round(fps / loHz));
   const sma = (arr: number[], n: number) =>
@@ -96,7 +97,10 @@ function bandpass(signal: number[], fps: number, loHz: number, hiHz: number): nu
       const s = Math.max(0, i - n + 1);
       return arr.slice(s, i + 1).reduce((a, v) => a + v, 0) / (i - s + 1);
     });
-  return signal.map((_, i) => sma(signal, nLo)[i] - sma(signal, nHi)[i]);
+
+  // Signal smoothing to reduce high-freq noise before bandpass
+  const smoothed = sma(signal, 3);
+  return smoothed.map((_, i) => sma(smoothed, nLo)[i] - sma(smoothed, nHi)[i]);
 }
 
 function dominantFreq(signal: number[], fps: number, minHz: number, maxHz: number): number {
@@ -104,16 +108,47 @@ function dominantFreq(signal: number[], fps: number, minHz: number, maxHz: numbe
   while (n < signal.length) n <<= 1;
   const re = new Float64Array(n);
   const im = new Float64Array(n);
-  signal.forEach((v, i) => { re[i] = v; });
+
+  // Apply a Hanning window to reduce spectral leakage before FFT
+  signal.forEach((v, i) => {
+    const windowMultiplier = 0.5 * (1 - Math.cos((2 * Math.PI * i) / (signal.length - 1)));
+    re[i] = v * windowMultiplier;
+  });
+
   fft(re, im);
   const freqRes = fps / n;
-  let best = -Infinity, bestFreq = (minHz + maxHz) / 2;
+
+  // Find highest peak strictly within the physiological bounds
+  let best = -Infinity;
+  let bestFreq = (minHz + maxHz) / 2;
+
+  // Also track total power for a simple Signal-to-Noise Ratio (SNR) check
+  let signalPower = 0;
+  let noisePower = 0;
+
   for (let i = 1; i < n / 2; i++) {
     const freq = i * freqRes;
-    if (freq < minHz || freq > maxHz) continue;
     const power = re[i] ** 2 + im[i] ** 2;
-    if (power > best) { best = power; bestFreq = freq; }
+
+    if (freq >= minHz && freq <= maxHz) {
+      signalPower += power;
+      if (power > best) {
+        best = power;
+        bestFreq = freq;
+      }
+    } else {
+      noisePower += power;
+    }
   }
+
+  // If the signal is pure noise, return the exact middle of the range as a safe fallback
+  // rather than a wildly inaccurate extreme reading.
+  const snr = signalPower / (noisePower + 1e-6);
+  if (snr < 0.2) {
+    console.warn(`[VitalLens/POS] Low SNR (${snr.toFixed(2)}), returning median bound`);
+    return (minHz + maxHz) / 2;
+  }
+
   return bestFreq;
 }
 
@@ -122,21 +157,21 @@ function dominantFreq(signal: number[], fps: number, minHz: number, maxHz: numbe
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface VitalSignEntry {
-  value:      number;
+  value: number;
   confidence: number;
-  unit?:      string;
+  unit?: string;
   /** per-second values array */
-  time_s?:    number[];
+  time_s?: number[];
 }
 
 interface VitalLensAPIResult {
   vitals?: {
-    heart_rate?:       VitalSignEntry;
+    heart_rate?: VitalSignEntry;
     respiratory_rate?: VitalSignEntry;
-    hrv_sdnn?:         VitalSignEntry;
+    hrv_sdnn?: VitalSignEntry;
   };
   /** some API versions return snake_case at root */
-  heart_rate?:       VitalSignEntry;
+  heart_rate?: VitalSignEntry;
   respiratory_rate?: VitalSignEntry;
 }
 
@@ -234,22 +269,22 @@ interface VitalResult {
 export function useVitalLens() {
   // ── Shared state ────────────────────────────────────────────────────────────
   const [scanning, setScanning] = useState(false);
-  const [method,   setMethod]   = useState<'api' | 'pos'>('pos');
+  const [method, setMethod] = useState<'api' | 'pos'>('pos');
 
   // ── Path A refs (MediaRecorder) ─────────────────────────────────────────────
-  const recorderRef    = useRef<MediaRecorder | null>(null);
-  const chunksRef      = useRef<Blob[]>([]);
-  const recordFpsRef   = useRef<number>(FPS);
+  const recorderRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<Blob[]>([]);
+  const recordFpsRef = useRef<number>(FPS);
 
   // ── Path B refs (POS) ───────────────────────────────────────────────────────
-  const intervalRef  = useRef<ReturnType<typeof setInterval> | null>(null);
-  const rgbBufRef    = useRef<[number, number, number][]>([]);
-  const canvasRef    = useRef<HTMLCanvasElement | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const rgbBufRef = useRef<[number, number, number][]>([]);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // ── startScan ───────────────────────────────────────────────────────────────
   const startScan = useCallback(async (videoEl: HTMLVideoElement, stream?: MediaStream) => {
-    chunksRef.current  = [];
-    rgbBufRef.current  = [];
+    chunksRef.current = [];
+    rgbBufRef.current = [];
 
     // ── Path A setup: MediaRecorder on the stream ───────────────────────────
     if (stream) {
@@ -286,7 +321,7 @@ export function useVitalLens() {
         ctx.drawImage(videoEl, vw * 0.25, vh * 0.1, vw * 0.5, vh * 0.8, 0, 0, 40, 40);
         const { data } = ctx.getImageData(0, 0, 40, 40);
         let r = 0, g = 0, b = 0;
-        for (let i = 0; i < data.length; i += 4) { r += data[i]; g += data[i+1]; b += data[i+2]; }
+        for (let i = 0; i < data.length; i += 4) { r += data[i]; g += data[i + 1]; b += data[i + 2]; }
         const px = data.length / 4;
         rgbBufRef.current.push([r / px, g / px, b / px]);
         if (rgbBufRef.current.length > MAX_SAMPLES) rgbBufRef.current.shift();
@@ -347,13 +382,13 @@ export function useVitalLens() {
     }
 
     try {
-      const pulse   = pos(rgbBuf);
-      const hrBand  = bandpass(pulse, FPS, 0.7,  4.0);
-      const rrBand  = bandpass(pulse, FPS, 0.15, 0.5);
-      const hrFreq  = dominantFreq(hrBand, FPS, 0.7,  4.0);
-      const rrFreq  = dominantFreq(rrBand, FPS, 0.15, 0.5);
-      const hr      = Math.round(hrFreq * 60);
-      const rr      = Math.round(rrFreq * 60);
+      const pulse = pos(rgbBuf);
+      const hrBand = bandpass(pulse, FPS, 0.7, 4.0);
+      const rrBand = bandpass(pulse, FPS, 0.15, 0.5);
+      const hrFreq = dominantFreq(hrBand, FPS, 0.7, 4.0);
+      const rrFreq = dominantFreq(rrBand, FPS, 0.15, 0.5);
+      const hr = Math.round(hrFreq * 60);
+      const rr = Math.round(rrFreq * 60);
       onLog?.(`POS result: HR=${hr} bpm  RR=${rr}/min`);
       console.log(`[VitalLens/POS] HR=${hr}bpm RR=${rr}/min`);
       setMethod('pos');
