@@ -233,7 +233,6 @@ export function SignalOrbs() {
             <p style={{
               fontFamily: "'Cabinet Grotesk', sans-serif",
               fontSize: '16px',
-              ,
               color: 'rgba(255,255,255,0.82)',
               lineHeight: 1.65,
               margin: 0,
