@@ -34,7 +34,7 @@ export function WelcomeScreen() {
           animate={{ opacity: 0.6 }}
           transition={{ delay: 0.4, duration: 1 }}
           style={{
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: "'Cabinet Grotesk', sans-serif",
             fontSize: '13px',
             letterSpacing: '6px',
             textTransform: 'uppercase',
@@ -106,7 +106,7 @@ export function WelcomeScreen() {
             background: 'none',
             border: 'none',
             color: 'white',
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: "'Cabinet Grotesk', sans-serif",
             fontSize: '14px',
             cursor: 'pointer',
             padding: '12px 24px',
@@ -125,9 +125,9 @@ export function WelcomeScreen() {
           style={{
             position: 'absolute',
             bottom: '40px',
-            fontFamily: 'Cormorant Garamond, serif',
+            fontFamily: "'Cabinet Grotesk', sans-serif",
             fontSize: '13px',
-            fontStyle: 'italic',
+            ,
             color: 'white',
             letterSpacing: '1px',
           }}

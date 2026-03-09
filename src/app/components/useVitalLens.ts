@@ -75,7 +75,7 @@ function fft(re: Float64Array, im: Float64Array): void {
 function pos(rgb: [number, number, number][]): number[] {
   const R = rgb.map(([r]) => r);
   const G = rgb.map(([, g]) => g);
-  const B = rgb.map(([, , b]) => b);
+  const B = rgb.map(([,, b]) => b);
   const mR = mean(R), mG = mean(G), mB = mean(B);
   if (mR < 1 || mG < 1 || mB < 1) return R.map(() => 0);
   const Rn = R.map(r => r / mR);

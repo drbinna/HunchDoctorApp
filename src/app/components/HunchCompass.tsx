@@ -374,7 +374,7 @@ export function HunchCompass() {
       <div className="flex items-center justify-between px-5 pt-5 pb-3">
         <div className="flex items-center gap-3">
           <AvatarOrb size={36} dominantSignal={dominantSignal} />
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
+          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
             HunchDoctor
           </span>
         </div>
@@ -417,10 +417,10 @@ export function HunchCompass() {
 
             {/* Title + description */}
             <div className="flex flex-col items-center gap-3 text-center">
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '22px', fontStyle: 'italic', color: 'rgba(255,255,255,0.9)', margin: 0 }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '22px',, color: 'rgba(255,255,255,0.9)', margin: 0 }}>
                 Reading your signals
               </p>
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', lineHeight: 1.7, color: 'rgba(255,255,255,0.35)', margin: 0, maxWidth: '260px' }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', lineHeight: 1.7, color: 'rgba(255,255,255,0.35)', margin: 0, maxWidth: '260px' }}>
                 HunchDoctor will briefly access your front camera to read facial expressions. Nothing is recorded or stored.
               </p>
             </div>
@@ -457,7 +457,7 @@ export function HunchCompass() {
                     <Camera size={18} color="rgba(255,255,255,0.85)" />
                   </motion.div>
                   <span style={{
-                    fontFamily: 'Inter, sans-serif', fontSize: '10px',
+                    fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px',
                     letterSpacing: '3px', textTransform: 'uppercase',
                     color: 'rgba(255,255,255,0.3)',
                   }}>
@@ -483,7 +483,7 @@ export function HunchCompass() {
                     }}
                   />
                   <span style={{
-                    fontFamily: 'Inter, sans-serif', fontSize: '10px',
+                    fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px',
                     letterSpacing: '3px', textTransform: 'uppercase',
                     color: 'rgba(255,255,255,0.25)',
                   }}>
@@ -575,7 +575,7 @@ export function HunchCompass() {
                             <Camera size={28} color="rgba(255,255,255,0.5)" />
                           </motion.div>
                         )}
-                        <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase' }}>
+                        <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase' }}>
                           {cameraBlocked ? 'unavailable' : 'waiting...'}
                         </span>
                       </motion.div>
@@ -638,7 +638,7 @@ export function HunchCompass() {
                         transition={{ repeat: Infinity, duration: 1.2 }}
                         style={{ width: 5, height: 5, borderRadius: '50%', background: '#ffffff' }}
                       />
-                      <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '8px', letterSpacing: '1.5px', color: 'rgba(255,255,255,0.7)' }}>LIVE</span>
+                      <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '8px', letterSpacing: '1.5px', color: 'rgba(255,255,255,0.7)' }}>LIVE</span>
                     </div>
                   )}
                 </div>
@@ -652,7 +652,7 @@ export function HunchCompass() {
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase' }}
+                        style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase' }}
                       >
                         detecting expression
                       </motion.span>
@@ -687,7 +687,7 @@ export function HunchCompass() {
                     exit={{ opacity: 0, y: -3 }}
                     transition={{ duration: 0.3 }}
                     style={{
-                      fontFamily: 'Inter, sans-serif',
+                      fontFamily: "'Cabinet Grotesk', sans-serif",
                       fontSize: '10px',
                       letterSpacing: '3px',
                       color: scanSubLabel === 'MEASURING VITALS'
@@ -715,7 +715,7 @@ export function HunchCompass() {
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '1.5px', color: 'rgba(255,255,255,0.2)', margin: 0, textAlign: 'center' }}
+                  style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', letterSpacing: '1.5px', color: 'rgba(255,255,255,0.2)', margin: 0, textAlign: 'center' }}
                 >
                   stay still · rPPG reading heart rate
                 </motion.p>
@@ -736,7 +736,7 @@ export function HunchCompass() {
             className="flex flex-col flex-1"
           >
             {/* Biometric strip */}
-            <div className="flex justify-center gap-6 pb-1" style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '2px', color: 'rgba(255,255,255,0.3)' }}>
+            <div className="flex justify-center gap-6 pb-1" style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', letterSpacing: '2px', color: 'rgba(255,255,255,0.3)' }}>
               <span style={{ color: hrIsReal ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.3)' }}>
                 HR {hr} bpm{hrIsReal ? ' ●' : ' ○'}
               </span>
@@ -773,7 +773,7 @@ export function HunchCompass() {
               >
                 <div className="flex items-center justify-center gap-2 mb-3">
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: dominantColor }} />
-                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: dominantColor, opacity: 0.9 }}>
+                  <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: dominantColor, opacity: 0.9 }}>
                     {dominantSignal && SIGNAL_CONFIG[dominantSignal].label} dominant
                     {dominantExpression && (
                       <span style={{ color: 'rgba(255,255,255,0.3)', marginLeft: '8px' }}>· {dominantExpression}</span>
@@ -805,7 +805,7 @@ export function HunchCompass() {
                             }}
                           />
                         ))}
-                        <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', marginTop: '2px' }}>
+                        <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', letterSpacing: '2px', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', marginTop: '2px' }}>
                           reading your signals…
                         </span>
                       </motion.div>
@@ -816,7 +816,7 @@ export function HunchCompass() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.6 }}
-                        style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '17px', fontStyle: 'italic', color: 'rgba(255,255,255,0.88)', lineHeight: 1.6, margin: 0 }}
+                        style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '17px',, color: 'rgba(255,255,255,0.88)', lineHeight: 1.6, margin: 0 }}
                       >
                         {claudeInsight ?? insight}
                       </motion.p>
@@ -827,13 +827,13 @@ export function HunchCompass() {
                 <div className="flex gap-3 mb-5">
                   <button
                     onClick={() => setShowDeep(true)}
-                    style={{ flex: 1, height: '48px', borderRadius: '999px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.85)', fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer' }}
+                    style={{ flex: 1, height: '48px', borderRadius: '999px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.85)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer' }}
                   >
                     Go deeper
                   </button>
                   <button
                     onClick={handleSave}
-                    style={{ flex: 1, height: '48px', borderRadius: '999px', background: `${dominantColor}14`, border: `1px solid ${dominantColor}35`, color: dominantColor, fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer' }}
+                    style={{ flex: 1, height: '48px', borderRadius: '999px', background: `${dominantColor}14`, border: `1px solid ${dominantColor}35`, color: dominantColor, fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer' }}
                   >
                     {savedToast ? 'Saved ✓' : 'Save to journal'}
                   </button>
@@ -841,7 +841,7 @@ export function HunchCompass() {
 
                 <button
                   onClick={() => navigate('/')}
-                  style={{ width: '100%', height: '44px', borderRadius: '999px', background: 'none', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.35)', fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer' }}
+                  style={{ width: '100%', height: '44px', borderRadius: '999px', background: 'none', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.35)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer' }}
                 >
                   New check-in
                 </button>
@@ -849,7 +849,7 @@ export function HunchCompass() {
                 {/* ── Data Audit toggle ── */}
                 <button
                   onClick={() => setShowAudit(v => !v)}
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0 0', color: 'rgba(255,255,255,0.18)', fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase' }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '10px 0 0', color: 'rgba(255,255,255,0.18)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase' }}
                 >
                   <FlaskConical size={11} />
                   {showAudit ? 'hide sensor audit' : 'sensor audit'}
@@ -875,7 +875,7 @@ export function HunchCompass() {
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 14,
-                        fontFamily: 'Inter, sans-serif',
+                        fontFamily: "'Cabinet Grotesk', sans-serif",
                         fontSize: '10px',
                       }}>
 
@@ -1053,7 +1053,7 @@ export function HunchCompass() {
               <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center gap-2">
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: dominantColor }} />
-                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: dominantColor }}>
+                  <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: dominantColor }}>
                     {SIGNAL_CONFIG[dominantSignal].label}
                   </span>
                 </div>
@@ -1064,7 +1064,7 @@ export function HunchCompass() {
                   <X size={18} />
                 </button>
               </div>
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '18px', fontStyle: 'italic', color: 'rgba(255,255,255,0.88)', lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px',, color: 'rgba(255,255,255,0.88)', lineHeight: 1.7, margin: 0 }}>
                 {DEEP_INSIGHTS[dominantSignal]}
               </p>
             </motion.div>

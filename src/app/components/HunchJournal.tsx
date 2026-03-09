@@ -71,7 +71,7 @@ function SignalBar({ signals }: { signals: JournalEntry['signals'] }) {
                 style={{ width: '100%', background: `${color}80`, borderRadius: '3px' }}
               />
             </div>
-            <span style={{ fontSize: '7px', letterSpacing: '1px', color: `${color}60`, fontFamily: 'Inter, sans-serif' }}>
+            <span style={{ fontSize: '7px', letterSpacing: '1px', color: `${color}60`, fontFamily: "'Cabinet Grotesk', sans-serif" }}>
               {SIGNAL_CONFIG[name].label[0]}
             </span>
           </div>
@@ -106,7 +106,7 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
         </span>
         <div className="flex items-center gap-1.5">
           <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: color }} />
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: color, opacity: 0.8 }}>
+          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: color, opacity: 0.8 }}>
             {SIGNAL_CONFIG[entry.dominantSignal].label}
           </span>
         </div>
@@ -114,9 +114,9 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
 
       {/* Narrative */}
       <p style={{
-        fontFamily: 'Cormorant Garamond, serif',
+        fontFamily: "'Cabinet Grotesk', sans-serif",
         fontSize: '16px',
-        fontStyle: 'italic',
+        ,
         color: 'rgba(255,255,255,0.82)',
         lineHeight: 1.65,
         margin: 0,
@@ -176,7 +176,7 @@ export function HunchJournal() {
         >
           <ChevronLeft size={22} />
         </button>
-        <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.75)' }}>
+        <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '15px', color: 'rgba(255,255,255,0.75)' }}>
           Journal
         </span>
         <div style={{ width: 22 }} />
@@ -204,13 +204,13 @@ export function HunchJournal() {
               <div className="flex items-start gap-3">
                 <Zap size={16} color="#F7A85A" style={{ marginTop: '2px', flexShrink: 0 }} />
                 <div>
-                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '2px', color: '#F7A85A', display: 'block', marginBottom: '6px' }}>
+                  <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', letterSpacing: '2px', color: '#F7A85A', display: 'block', marginBottom: '6px' }}>
                     PATTERN DETECTED
                   </span>
                   <p style={{
-                    fontFamily: 'Cormorant Garamond, serif',
+                    fontFamily: "'Cabinet Grotesk', sans-serif",
                     fontSize: '16px',
-                    fontStyle: 'italic',
+                    ,
                     color: 'rgba(255,255,255,0.82)',
                     lineHeight: 1.6,
                     margin: 0,
@@ -226,7 +226,7 @@ export function HunchJournal() {
         {/* Empty state */}
         {journalEntries.length === 0 && (
           <div className="flex flex-col items-center justify-center" style={{ paddingTop: '80px' }}>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '18px', fontStyle: 'italic', color: 'rgba(255,255,255,0.35)', textAlign: 'center', lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px',, color: 'rgba(255,255,255,0.35)', textAlign: 'center', lineHeight: 1.6 }}>
               Your journal is empty.<br />Begin a session to create your first entry.
             </p>
           </div>
@@ -236,7 +236,7 @@ export function HunchJournal() {
         {grouped.map(([dateLabel, entries]) => (
           <div key={dateLabel} style={{ marginBottom: '28px' }}>
             <span style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: "'Cabinet Grotesk', sans-serif",
               fontSize: '11px',
               letterSpacing: '3px',
               textTransform: 'uppercase',
@@ -271,7 +271,7 @@ export function HunchJournal() {
             background: 'rgba(255,255,255,0.06)',
             border: '1px solid rgba(255,255,255,0.1)',
             color: 'rgba(255,255,255,0.6)',
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: "'Cabinet Grotesk', sans-serif",
             fontSize: '14px',
             cursor: 'pointer',
           }}

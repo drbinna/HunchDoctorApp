@@ -270,7 +270,7 @@ function VoiceScreenInner({
       <div className="flex items-center justify-between px-5 pt-5 pb-3" style={{ position: 'relative', zIndex: 10 }}>
         <div className="flex items-center gap-3">
           <AvatarOrb size={36} />
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
+          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
             HunchDoctor
           </span>
         </div>
@@ -299,10 +299,10 @@ function VoiceScreenInner({
                 <AvatarOrb size={100} />
               </div>
               <div style={{ maxWidth: 280 }}>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '24px', fontStyle: 'italic', color: 'rgba(255,255,255,0.9)', marginBottom: 12, lineHeight: 1.4 }}>
+                <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '24px',, color: 'rgba(255,255,255,0.9)', marginBottom: 12, lineHeight: 1.4 }}>
                   Let's hear your body first
                 </p>
-                <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', lineHeight: 1.7, color: 'rgba(255,255,255,0.35)' }}>
+                <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', lineHeight: 1.7, color: 'rgba(255,255,255,0.35)' }}>
                   Hunch will ask a few questions. Your voice carries signals your face can't always show.
                 </p>
               </div>
@@ -314,7 +314,7 @@ function VoiceScreenInner({
                     background: keysConfigured ? '#ffffff' : 'rgba(255,255,255,0.04)',
                     border: keysConfigured ? 'none' : '1px solid rgba(255,255,255,0.1)',
                     color: keysConfigured ? '#0a0a0f' : 'rgba(255,255,255,0.2)',
-                    fontFamily: 'Inter, sans-serif', fontSize: '15px', fontWeight: 500,
+                    fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '15px', fontWeight: 500,
                     cursor: keysConfigured ? 'pointer' : 'not-allowed', letterSpacing: '0.5px',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                     boxShadow: keysConfigured ? '0 4px 14px rgba(255,255,255,0.1)' : 'none',
@@ -322,7 +322,7 @@ function VoiceScreenInner({
                 >
                   <Mic size={16} strokeWidth={2.5} /> Begin conversation
                 </motion.button>
-                <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: 'Inter, sans-serif', fontSize: '12px', cursor: 'pointer', padding: '10px 20px' }}>
+                <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', cursor: 'pointer', padding: '10px 20px' }}>
                   Skip — go straight to scan
                 </button>
               </div>
@@ -344,10 +344,10 @@ function VoiceScreenInner({
               >
                 <Mic size={24} color="#4FD1C5" />
               </motion.div>
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '22px', fontStyle: 'italic', color: 'rgba(255,255,255,0.85)' }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '22px',, color: 'rgba(255,255,255,0.85)' }}>
                 Allow microphone access
               </p>
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: 'rgba(255,255,255,0.35)', maxWidth: 240, lineHeight: 1.7 }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.35)', maxWidth: 240, lineHeight: 1.7 }}>
                 A browser dialog should appear. Click <strong style={{ color: 'rgba(255,255,255,0.6)' }}>Allow</strong> to continue.
               </p>
             </motion.div>
@@ -368,16 +368,16 @@ function VoiceScreenInner({
                   transition={{ repeat: Infinity, duration: 1.2, ease: 'linear' }}
                   style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid rgba(79,209,197,0.2)', borderTopColor: '#4FD1C5' }}
                 />
-                <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '3px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>
+                <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '3px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>
                   Connecting{connectSec > 3 ? ` · ${connectSec}s` : ''}
                 </span>
               </div>
               {connectSec >= 8 && (
                 <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col items-center gap-2">
-                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: 'rgba(255,255,255,0.25)', maxWidth: 220, lineHeight: 1.6, textAlign: 'center' }}>
+                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', color: 'rgba(255,255,255,0.25)', maxWidth: 220, lineHeight: 1.6, textAlign: 'center' }}>
                     Taking longer than usual…
                   </p>
-                  <button onClick={handleSkip} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 999, color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter, sans-serif', fontSize: '12px', cursor: 'pointer', padding: '8px 20px' }}>
+                  <button onClick={handleSkip} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 999, color: 'rgba(255,255,255,0.4)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', cursor: 'pointer', padding: '8px 20px' }}>
                     Skip to scan
                   </button>
                 </motion.div>
@@ -425,7 +425,7 @@ function VoiceScreenInner({
                     )}
                   </AnimatePresence>
                   <span style={{
-                    fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase',
+                    fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase',
                     color: isSpeaking ? accentColor : 'rgba(255,255,255,0.45)',
                     transition: 'color 0.5s ease',
                   }}>
@@ -449,11 +449,11 @@ function VoiceScreenInner({
                       }}
                     >
                       {speaker === 'user' && (
-                        <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'block', marginBottom: 6 }}>
+                        <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'block', marginBottom: 6 }}>
                           You
                         </span>
                       )}
-                      <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '16px', fontStyle: 'italic', color: 'rgba(255,255,255,0.85)', lineHeight: 1.55, margin: 0 }}>
+                      <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '16px',, color: 'rgba(255,255,255,0.85)', lineHeight: 1.55, margin: 0 }}>
                         {transcript}
                       </p>
                     </motion.div>
@@ -483,18 +483,18 @@ function VoiceScreenInner({
                         padding: top5Prosody.length ? '12px 14px' : '10px 14px',
                       }}
                     >
-                      <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(79,209,197,0.6)', margin: '0 0 8px 0' }}>
+                      <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(79,209,197,0.6)', margin: '0 0 8px 0' }}>
                         Live prosody · user voice · top emotions
                       </p>
                       {top5Prosody.length === 0 ? (
-                        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>
+                        <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>
                           No user turns yet — speak to populate
                         </p>
                       ) : (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
                           {top5Prosody.map(([emotion, score]) => (
                             <div key={emotion} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                              <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', color: 'rgba(255,255,255,0.55)', width: 90, flexShrink: 0 }}>
+                              <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', color: 'rgba(255,255,255,0.55)', width: 90, flexShrink: 0 }}>
                                 {emotion}
                               </span>
                               <div style={{ flex: 1, height: 3, background: 'rgba(255,255,255,0.07)', borderRadius: 2, overflow: 'hidden' }}>
@@ -504,16 +504,16 @@ function VoiceScreenInner({
                                   style={{ height: '100%', background: accentColor, borderRadius: 2 }}
                                 />
                               </div>
-                              <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', color: 'rgba(255,255,255,0.35)', width: 28, textAlign: 'right' }}>
+                              <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', color: 'rgba(255,255,255,0.35)', width: 28, textAlign: 'right' }}>
                                 {(score * 100).toFixed(0)}%
                               </span>
                             </div>
                           ))}
                           <div style={{ marginTop: 6, paddingTop: 6, borderTop: '1px solid rgba(255,255,255,0.07)', display: 'flex', justifyContent: 'space-between' }}>
-                            <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', color: 'rgba(255,255,255,0.25)' }}>
+                            <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', color: 'rgba(255,255,255,0.25)' }}>
                               → signal
                             </span>
-                            <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', color: accentColor, letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+                            <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '9px', color: accentColor, letterSpacing: '1.5px', textTransform: 'uppercase' }}>
                               {voiceSignal}
                             </span>
                           </div>
@@ -525,20 +525,20 @@ function VoiceScreenInner({
 
                 <button
                   onClick={() => setShowProsodyDebug(v => !v)}
-                  style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.18)', fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '1.5px', cursor: 'pointer', padding: '4px 10px', textTransform: 'uppercase' }}
+                  style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.18)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '10px', letterSpacing: '1.5px', cursor: 'pointer', padding: '4px 10px', textTransform: 'uppercase' }}
                 >
                   {showProsodyDebug ? 'hide prosody' : 'show prosody'}
                 </button>
 
                 <button
                   onClick={handleEnd}
-                  style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(79,209,197,0.1)', border: '1px solid rgba(79,209,197,0.25)', borderRadius: 999, color: '#4FD1C5', fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer', padding: '10px 24px' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(79,209,197,0.1)', border: '1px solid rgba(79,209,197,0.25)', borderRadius: 999, color: '#4FD1C5', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer', padding: '10px 24px' }}
                 >
                   Move to face scan <ArrowRight size={14} />
                 </button>
                 <button
                   onClick={handleSkip}
-                  style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.2)', fontFamily: 'Inter, sans-serif', fontSize: '11px', cursor: 'pointer', padding: 8 }}
+                  style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.2)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', cursor: 'pointer', padding: 8 }}
                 >
                   Skip voice entirely
                 </button>
@@ -557,27 +557,27 @@ function VoiceScreenInner({
               <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(246,173,85,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(246,173,85,0.25)' }}>
                 <ShieldAlert size={22} color="#F6AD55" />
               </div>
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '20px', fontStyle: 'italic', color: 'rgba(255,255,255,0.85)' }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '20px',, color: 'rgba(255,255,255,0.85)' }}>
                 Microphone blocked
               </p>
               {errorHint === 'iframe_blocked' ? (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, maxWidth: 280 }}>
-                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, textAlign: 'center', margin: 0 }}>
+                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, textAlign: 'center', margin: 0 }}>
                     This preview runs inside a sandboxed frame that restricts microphone access. Open the app in its own tab to enable voice.
                   </p>
                   <motion.button whileTap={{ scale: 0.97 }} onClick={() => window.open(window.location.href, '_blank')}
-                    style={{ display: 'flex', alignItems: 'center', gap: 7, background: 'rgba(246,173,85,0.12)', border: '1px solid rgba(246,173,85,0.35)', borderRadius: 999, color: '#F6AD55', fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer', padding: '10px 22px' }}
+                    style={{ display: 'flex', alignItems: 'center', gap: 7, background: 'rgba(246,173,85,0.12)', border: '1px solid rgba(246,173,85,0.35)', borderRadius: 999, color: '#F6AD55', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer', padding: '10px 22px' }}
                   >
                     <ExternalLink size={13} /> Open in new tab
                   </motion.button>
-                  <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: 'Inter, sans-serif', fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
+                  <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
                     Skip voice — go to face scan
                   </button>
                 </div>
               ) : (
                 <>
-                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: 'rgba(255,255,255,0.35)', maxWidth: 260, lineHeight: 1.8, textAlign: 'left', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '14px 16px' }}>
-                    <p style={{ color: 'rgba(255,255,255,0.5)', marginBottom: 8, fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase' }}>
+                  <div style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.35)', maxWidth: 260, lineHeight: 1.8, textAlign: 'left', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '14px 16px' }}>
+                    <p style={{ color: 'rgba(255,255,255,0.5)', marginBottom: 8, fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase' }}>
                       To fix in {BROWSER}:
                     </p>
                     {BROWSER === 'Chrome' || BROWSER === 'Edge' ? (
@@ -601,10 +601,10 @@ function VoiceScreenInner({
                     )}
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <button onClick={startEVI} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(246,173,85,0.1)', border: '1px solid rgba(246,173,85,0.3)', borderRadius: 999, color: '#F6AD55', fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer', padding: '10px 24px' }}>
+                    <button onClick={startEVI} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(246,173,85,0.1)', border: '1px solid rgba(246,173,85,0.3)', borderRadius: 999, color: '#F6AD55', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer', padding: '10px 24px' }}>
                       <Mic size={13} /> Try again
                     </button>
-                    <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: 'Inter, sans-serif', fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
+                    <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
                       Skip voice — go to face scan
                     </button>
                   </div>
@@ -631,39 +631,39 @@ function VoiceScreenInner({
               </div>
               {errorHint === 'iframe_ws_blocked' ? (
                 <>
-                  <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '26px', fontStyle: 'italic', color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
+                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '26px',, color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
                     Preview can't reach Hume
                   </p>
-                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: 'rgba(255,255,255,0.4)', maxWidth: 270, lineHeight: 1.8, textAlign: 'center', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '14px 18px' }}>
+                  <div style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.4)', maxWidth: 270, lineHeight: 1.8, textAlign: 'center', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '14px 18px' }}>
                     The Figma Make preview runs in a sandboxed iframe that blocks outbound WebSocket connections.<br /><br />
                     <strong style={{ color: 'rgba(255,255,255,0.65)' }}>Open the app in its own tab</strong> — voice will work there.
                   </div>
                   <div className="flex flex-col items-center gap-3 w-full" style={{ maxWidth: 280 }}>
                     <motion.button whileTap={{ scale: 0.97 }} onClick={() => window.open(window.location.href, '_blank')}
-                      style={{ display: 'flex', alignItems: 'center', gap: 7, width: '100%', height: 48, justifyContent: 'center', background: 'rgba(79,209,197,0.1)', border: '1px solid rgba(79,209,197,0.3)', borderRadius: 999, color: '#4FD1C5', fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer' }}
+                      style={{ display: 'flex', alignItems: 'center', gap: 7, width: '100%', height: 48, justifyContent: 'center', background: 'rgba(79,209,197,0.1)', border: '1px solid rgba(79,209,197,0.3)', borderRadius: 999, color: '#4FD1C5', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer' }}
                     >
                       <ExternalLink size={14} /> Open in new tab
                     </motion.button>
-                    <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: 'Inter, sans-serif', fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
+                    <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
                       Skip — go to face scan
                     </button>
                   </div>
                 </>
               ) : (
                 <>
-                  <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '26px', fontStyle: 'italic', color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
+                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '26px',, color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
                     Connection failed
                   </p>
-                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.35)', maxWidth: 260, lineHeight: 1.7, margin: 0 }}>
+                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.35)', maxWidth: 260, lineHeight: 1.7, margin: 0 }}>
                     Couldn't reach Hume — check the browser console for details, then retry.
                   </p>
                   <div className="flex flex-col items-center gap-3 w-full" style={{ maxWidth: 280 }}>
                     <motion.button onClick={startEVI} whileTap={{ scale: 0.97 }}
-                      style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', height: 48, justifyContent: 'center', background: 'rgba(217,107,107,0.1)', border: '1px solid rgba(217,107,107,0.3)', borderRadius: 999, color: '#D96B6B', fontFamily: 'Inter, sans-serif', fontSize: '13px', cursor: 'pointer', letterSpacing: '0.5px' }}
+                      style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', height: 48, justifyContent: 'center', background: 'rgba(217,107,107,0.1)', border: '1px solid rgba(217,107,107,0.3)', borderRadius: 999, color: '#D96B6B', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', cursor: 'pointer', letterSpacing: '0.5px' }}
                     >
                       <Mic size={14} /> Retry connection
                     </motion.button>
-                    <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: 'Inter, sans-serif', fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
+                    <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.25)', fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', cursor: 'pointer', padding: '8px 16px' }}>
                       Skip — go to face scan
                     </button>
                   </div>

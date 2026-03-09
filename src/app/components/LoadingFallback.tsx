@@ -50,7 +50,7 @@ export function LoadingFallback() {
         />
         <span
           style={{
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: "'Cabinet Grotesk', sans-serif",
             fontSize: '10px',
             letterSpacing: '3px',
             textTransform: 'uppercase',

@@ -64,7 +64,7 @@ function SettingRow({
       }}
     >
       <span style={{
-        fontFamily: 'Inter, sans-serif',
+        fontFamily: "'Cabinet Grotesk', sans-serif",
         fontSize: '15px',
         color: destructive ? '#f87171' : 'rgba(255,255,255,0.78)',
       }}>
@@ -79,7 +79,7 @@ function SectionLabel({ label }: { label: string }) {
   return (
     <div style={{
       padding: '20px 0 8px',
-      fontFamily: 'Inter, sans-serif',
+      fontFamily: "'Cabinet Grotesk', sans-serif",
       fontSize: '11px',
       letterSpacing: '3px',
       textTransform: 'uppercase',
@@ -127,7 +127,7 @@ export function SettingsScreen() {
         >
           <ChevronLeft size={22} />
         </button>
-        <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.75)' }}>
+        <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '15px', color: 'rgba(255,255,255,0.75)' }}>
           Settings
         </span>
         <div style={{ width: 22 }} />
@@ -165,7 +165,7 @@ export function SettingsScreen() {
             onPress={() => setFrequencyOpen(!frequencyOpen)}
             right={
               <div className="flex items-center gap-2">
-                <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.4)' }}>
+                <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '14px', color: 'rgba(255,255,255,0.4)' }}>
                   {freqLabel[settings.insightFrequency]}
                 </span>
                 <ChevronRight size={14} color="rgba(255,255,255,0.25)" />
@@ -200,7 +200,7 @@ export function SettingsScreen() {
                           border: 'none',
                           cursor: 'pointer',
                           color: settings.insightFrequency === freq ? '#4FD1C5' : 'rgba(255,255,255,0.65)',
-                          fontFamily: 'Inter, sans-serif',
+                          fontFamily: "'Cabinet Grotesk', sans-serif",
                           fontSize: '15px',
                         }}
                       >
@@ -239,7 +239,7 @@ export function SettingsScreen() {
         {/* About */}
         <SectionLabel label="About" />
         <p style={{
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: "'Cabinet Grotesk', sans-serif",
           fontSize: '12px',
           color: 'rgba(255,255,255,0.28)',
           lineHeight: 1.65,
@@ -249,7 +249,7 @@ export function SettingsScreen() {
         </p>
 
         <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '2px', color: 'rgba(255,255,255,0.15)' }}>
+          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '2px', color: 'rgba(255,255,255,0.15)' }}>
             HUNCHDOCTOR · FIGBUILD 2026
           </span>
         </div>
@@ -288,10 +288,10 @@ export function SettingsScreen() {
                 borderBottom: 'none',
               }}
             >
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '20px', color: 'rgba(255,255,255,0.85)', textAlign: 'center', fontStyle: 'italic', marginBottom: '8px' }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '20px', color: 'rgba(255,255,255,0.85)', textAlign: 'center',, marginBottom: '8px' }}>
                 Clear all sessions?
               </p>
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '28px', lineHeight: 1.6 }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '28px', lineHeight: 1.6 }}>
                 This will permanently delete your journal and pattern history.
               </p>
               <div className="flex flex-col gap-3">
@@ -303,7 +303,7 @@ export function SettingsScreen() {
                     background: 'rgba(248,113,113,0.12)',
                     border: '1px solid rgba(248,113,113,0.3)',
                     color: '#f87171',
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: "'Cabinet Grotesk', sans-serif",
                     fontSize: '15px',
                     cursor: 'pointer',
                   }}
@@ -318,7 +318,7 @@ export function SettingsScreen() {
                     background: 'rgba(255,255,255,0.05)',
                     border: '1px solid rgba(255,255,255,0.1)',
                     color: 'rgba(255,255,255,0.55)',
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: "'Cabinet Grotesk', sans-serif",
                     fontSize: '15px',
                     cursor: 'pointer',
                   }}

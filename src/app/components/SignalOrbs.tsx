@@ -119,7 +119,7 @@ export function SignalOrbs() {
         </button>
         <div className="flex items-center gap-3">
           <AvatarOrb size={28} dominantSignal={activeSignal} />
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>
+          <span style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>
             Shift
           </span>
         </div>
@@ -141,7 +141,7 @@ export function SignalOrbs() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         style={{
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: "'Cabinet Grotesk', sans-serif",
           fontSize: '11px',
           letterSpacing: '2px',
           textTransform: 'uppercase',
@@ -201,7 +201,7 @@ export function SignalOrbs() {
                   }}
                 />
                 <span style={{
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: "'Cabinet Grotesk', sans-serif",
                   fontSize: '9px',
                   letterSpacing: '2px',
                   textTransform: 'uppercase',
@@ -231,9 +231,9 @@ export function SignalOrbs() {
             }}
           >
             <p style={{
-              fontFamily: 'Cormorant Garamond, serif',
+              fontFamily: "'Cabinet Grotesk', sans-serif",
               fontSize: '16px',
-              fontStyle: 'italic',
+              ,
               color: 'rgba(255,255,255,0.82)',
               lineHeight: 1.65,
               margin: 0,
@@ -251,7 +251,7 @@ export function SignalOrbs() {
               background: 'none',
               border: 'none',
               color: 'rgba(255,255,255,0.35)',
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: "'Cabinet Grotesk', sans-serif",
               fontSize: '14px',
               cursor: 'pointer',
               padding: '12px 40px',
