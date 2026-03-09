@@ -288,7 +288,7 @@ export function SettingsScreen() {
                 borderBottom: 'none',
               }}
             >
-              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '20px', color: 'rgba(255,255,255,0.85)', textAlign: 'center',, marginBottom: '8px' }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '20px', color: 'rgba(255,255,255,0.85)', textAlign: 'center', marginBottom: '8px' }}>
                 Clear all sessions?
               </p>
               <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '28px', lineHeight: 1.6 }}>

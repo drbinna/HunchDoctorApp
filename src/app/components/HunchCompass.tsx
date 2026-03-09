@@ -417,7 +417,7 @@ export function HunchCompass() {
 
             {/* Title + description */}
             <div className="flex flex-col items-center gap-3 text-center">
-              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '22px',, color: 'rgba(255,255,255,0.9)', margin: 0 }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '22px', color: 'rgba(255,255,255,0.9)', margin: 0 }}>
                 Reading your signals
               </p>
               <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', lineHeight: 1.7, color: 'rgba(255,255,255,0.35)', margin: 0, maxWidth: '260px' }}>
@@ -816,7 +816,7 @@ export function HunchCompass() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.6 }}
-                        style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '17px',, color: 'rgba(255,255,255,0.88)', lineHeight: 1.6, margin: 0 }}
+                        style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '17px', color: 'rgba(255,255,255,0.88)', lineHeight: 1.6, margin: 0 }}
                       >
                         {claudeInsight ?? insight}
                       </motion.p>
@@ -1064,7 +1064,7 @@ export function HunchCompass() {
                   <X size={18} />
                 </button>
               </div>
-              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px',, color: 'rgba(255,255,255,0.88)', lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px', color: 'rgba(255,255,255,0.88)', lineHeight: 1.7, margin: 0 }}>
                 {DEEP_INSIGHTS[dominantSignal]}
               </p>
             </motion.div>

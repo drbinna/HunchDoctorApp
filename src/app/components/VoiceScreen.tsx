@@ -299,7 +299,7 @@ function VoiceScreenInner({
                 <AvatarOrb size={100} />
               </div>
               <div style={{ maxWidth: 280 }}>
-                <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '24px',, color: 'rgba(255,255,255,0.9)', marginBottom: 12, lineHeight: 1.4 }}>
+                <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '24px', color: 'rgba(255,255,255,0.9)', marginBottom: 12, lineHeight: 1.4 }}>
                   Let's hear your body first
                 </p>
                 <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', lineHeight: 1.7, color: 'rgba(255,255,255,0.35)' }}>
@@ -344,7 +344,7 @@ function VoiceScreenInner({
               >
                 <Mic size={24} color="#4FD1C5" />
               </motion.div>
-              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '22px',, color: 'rgba(255,255,255,0.85)' }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '22px', color: 'rgba(255,255,255,0.85)' }}>
                 Allow microphone access
               </p>
               <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.35)', maxWidth: 240, lineHeight: 1.7 }}>
@@ -453,7 +453,7 @@ function VoiceScreenInner({
                           You
                         </span>
                       )}
-                      <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '16px',, color: 'rgba(255,255,255,0.85)', lineHeight: 1.55, margin: 0 }}>
+                      <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '16px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.55, margin: 0 }}>
                         {transcript}
                       </p>
                     </motion.div>
@@ -557,7 +557,7 @@ function VoiceScreenInner({
               <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(246,173,85,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(246,173,85,0.25)' }}>
                 <ShieldAlert size={22} color="#F6AD55" />
               </div>
-              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '20px',, color: 'rgba(255,255,255,0.85)' }}>
+              <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '20px', color: 'rgba(255,255,255,0.85)' }}>
                 Microphone blocked
               </p>
               {errorHint === 'iframe_blocked' ? (
@@ -631,7 +631,7 @@ function VoiceScreenInner({
               </div>
               {errorHint === 'iframe_ws_blocked' ? (
                 <>
-                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '26px',, color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
+                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '26px', color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
                     Preview can't reach Hume
                   </p>
                   <div style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.4)', maxWidth: 270, lineHeight: 1.8, textAlign: 'center', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '14px 18px' }}>
@@ -651,7 +651,7 @@ function VoiceScreenInner({
                 </>
               ) : (
                 <>
-                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '26px',, color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
+                  <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '26px', color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.3 }}>
                     Connection failed
                   </p>
                   <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.35)', maxWidth: 260, lineHeight: 1.7, margin: 0 }}>

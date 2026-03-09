@@ -226,7 +226,7 @@ export function HunchJournal() {
         {/* Empty state */}
         {journalEntries.length === 0 && (
           <div className="flex flex-col items-center justify-center" style={{ paddingTop: '80px' }}>
-            <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px',, color: 'rgba(255,255,255,0.35)', textAlign: 'center', lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "'Cabinet Grotesk', sans-serif", fontSize: '18px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', lineHeight: 1.6 }}>
               Your journal is empty.<br />Begin a session to create your first entry.
             </p>
           </div>
