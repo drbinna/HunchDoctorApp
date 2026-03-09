@@ -313,7 +313,7 @@ function VoiceScreenInner({
               </div>
               <div className="flex flex-col items-center gap-3 w-full" style={{ maxWidth: 280 }}>
                 <motion.button
-                  onClick={startEVI} disabled={!keysConfigured} whileTap={{ scale: 0.97 }}
+                  onClick={startEVI} whileTap={{ scale: 0.97 }}
                   style={{
                     width: '100%', height: 52, borderRadius: 999,
                     background: keysConfigured ? '#ffffff' : 'rgba(255,255,255,0.04)',
