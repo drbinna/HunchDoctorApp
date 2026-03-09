@@ -19,4 +19,4 @@ export const HUME_API_KEY = import.meta.env.VITE_HUME_API_KEY || "";
 export const HUME_SECRET_KEY = import.meta.env.VITE_HUME_SECRET_KEY || "";
 
 // Find it: platform.hume.ai → EVI → Configurations → your config → ID
-export const HUME_CONFIG_ID = import.meta.env.VITE_HUME_CONFIG_ID || "d72ff3d9-cfe3-4d40-b5da-5b912c911e36";
+export const HUME_CONFIG_ID = import.meta.env.VITE_HUME_CONFIG_ID || "";

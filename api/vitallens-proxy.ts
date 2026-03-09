@@ -18,8 +18,9 @@
  *   stream          → api.rouast.com/vitallens-v3/stream
  *   resolve-model   → api.rouast.com/vitallens-v3/resolve-model
  *
- * Environment variable (Vercel → Settings → Environment Variables):
- *   VITALLENS_API_KEY   your VitalLens API key
+ * IMPORTANT REMINDER:
+ *   VITALLENS_API_KEY must be set in Vercel dashboard → Settings → Environment Variables
+ *   (no VITE_ prefix, server-side only).
  */
 
 export const runtime = 'edge';
@@ -27,7 +28,7 @@ export const runtime = 'edge';
 const VITALLENS_BASE = 'https://api.rouast.com/vitallens-v3';
 
 const CORS = {
-  'Access-Control-Allow-Origin':  '*',
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
 };
@@ -53,9 +54,9 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   // ── Resolve target endpoint ───────────────────────────────────────────────
-  const url      = new URL(req.url);
+  const url = new URL(req.url);
   const endpoint = url.searchParams.get('endpoint') || 'file';
-  const allowed  = ['file', 'stream', 'resolve-model'];
+  const allowed = ['file', 'stream', 'resolve-model'];
   if (!allowed.includes(endpoint)) {
     return json({ error: `Unknown endpoint "${endpoint}". Allowed: ${allowed.join(', ')}` }, 400);
   }
@@ -73,14 +74,14 @@ export default async function handler(req: Request): Promise<Response> {
   fwdHeaders.set('x-api-key', apiKey);
 
   // ── Forward request (body streamed directly — no buffering) ──────────────
-  console.log(`[vitallens-proxy] → ${req.method} ${targetUrl} (key: ${apiKey.slice(0,6)}…)`);
+  console.log(`[vitallens-proxy] → ${req.method} ${targetUrl} (key: ${apiKey.slice(0, 6)}…)`);
 
   let upstreamRes: Response;
   try {
     upstreamRes = await fetch(targetUrl, {
-      method:  req.method,
+      method: req.method,
       headers: fwdHeaders,
-      body:    req.body,          // ReadableStream — streamed, not buffered
+      body: req.body,          // ReadableStream — streamed, not buffered
       // @ts-expect-error — duplex is needed for streaming POST in some runtimes
       duplex: 'half',
     });
@@ -98,7 +99,7 @@ export default async function handler(req: Request): Promise<Response> {
   console.log(`[vitallens-proxy] ← HTTP ${upstreamRes.status} from api.rouast.com`);
 
   return new Response(upstreamRes.body, {
-    status:  upstreamRes.status,
+    status: upstreamRes.status,
     headers: respHeaders,
   });
 }
