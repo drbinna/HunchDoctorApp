@@ -127,7 +127,6 @@ export function WelcomeScreen() {
             bottom: '40px',
             fontFamily: "'Cabinet Grotesk', sans-serif",
             fontSize: '13px',
-            ,
             color: 'white',
             letterSpacing: '1px',
           }}
