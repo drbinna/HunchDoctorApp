@@ -74,13 +74,13 @@ function fuseAllSources(
 function getScanLabel(status: FaceDetectionStatus, modelsLoaded: boolean): string {
   if (!modelsLoaded) return 'LOADING MODELS';
   switch (status) {
-    case 'loading-models':    return 'LOADING MODELS';
+    case 'loading-models': return 'LOADING MODELS';
     case 'requesting-camera': return 'OPENING CAMERA';
-    case 'scanning':          return 'READING SIGNALS';
-    case 'no-face':           return 'ESTIMATING SIGNALS';
-    case 'camera-denied':     return 'ESTIMATING SIGNALS';
-    case 'error':             return 'ESTIMATING SIGNALS';
-    default:                  return 'SENSING';
+    case 'scanning': return 'READING SIGNALS';
+    case 'no-face': return 'ESTIMATING SIGNALS';
+    case 'camera-denied': return 'ESTIMATING SIGNALS';
+    case 'error': return 'ESTIMATING SIGNALS';
+    default: return 'SENSING';
   }
 }
 
@@ -150,8 +150,8 @@ export function HunchCompass() {
         result.onchange = () => {
           setCameraPermission(
             result.state === 'granted' ? 'granted'
-            : result.state === 'denied' ? 'denied'
-            : 'needs-gesture'
+              : result.state === 'denied' ? 'denied'
+                : 'needs-gesture'
           );
         };
       })
@@ -182,8 +182,8 @@ export function HunchCompass() {
     // Phase 1: face-api multi-frame sampling  (~6.5 s: 2 s warmup + 8 × 500 ms)
     // Phase 2: VitalLens-only hold            (~38.5 s, camera stays open)
     // Total camera-open target:               ~45 s → reliable rPPG window
-    const FACE_PHASE_MS  = 6500;   // rough face-scan duration (for progress bar)
-    const TOTAL_SCAN_MS  = 45000;  // total camera-open target
+    const FACE_PHASE_MS = 6500;   // rough face-scan duration (for progress bar)
+    const TOTAL_SCAN_MS = 45000;  // total camera-open target
 
     const scanStartTime = Date.now();
 
@@ -368,7 +368,7 @@ export function HunchCompass() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen" style={{ background: '#0a0a0f' }}>
+    <div className="flex flex-col min-h-screen relative">
 
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-5 pb-3">

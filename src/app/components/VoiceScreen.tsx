@@ -25,9 +25,9 @@ import { HUME_API_KEY, HUME_SECRET_KEY, HUME_CONFIG_ID } from '../../config/keys
 // ── voiceLoader ───────────────────────────────────────────────────────────────
 export async function voiceLoader() {
   const keysReady =
-    HUME_API_KEY    !== 'YOUR_HUME_API_KEY_HERE'    && !!HUME_API_KEY &&
+    HUME_API_KEY !== 'YOUR_HUME_API_KEY_HERE' && !!HUME_API_KEY &&
     HUME_SECRET_KEY !== 'YOUR_HUME_SECRET_KEY_HERE' && !!HUME_SECRET_KEY &&
-    HUME_CONFIG_ID  !== 'YOUR_HUME_CONFIG_ID_HERE'  && !!HUME_CONFIG_ID;
+    HUME_CONFIG_ID !== 'YOUR_HUME_CONFIG_ID_HERE' && !!HUME_CONFIG_ID;
 
   if (!keysReady) return { accessToken: '' };
 
@@ -72,14 +72,14 @@ export type EVIStatus =
 //   3. LIMIT_MS          — hard cap so a stuck state never blocks forever.
 function waitUntilSilent(isPlayingRef: React.MutableRefObject<boolean>): Promise<void> {
   return new Promise<void>((resolve) => {
-    const POLL_MS          = 50;
+    const POLL_MS = 50;
     const STARTUP_GRACE_MS = 2000;  // was 900 — give audio more time to START after tool_call
     const STABLE_SILENT_MS = 900;   // was 420 — audio must be silent for this long continuously
-    const LIMIT_MS         = 18_000;
+    const LIMIT_MS = 18_000;
 
-    let elapsed          = 0;
-    let silentFor        = 0;
-    let audioEverPlayed  = isPlayingRef.current; // true if audio was already going
+    let elapsed = 0;
+    let silentFor = 0;
+    let audioEverPlayed = isPlayingRef.current; // true if audio was already going
 
     const id = setInterval(() => {
       elapsed += POLL_MS;
@@ -107,10 +107,10 @@ function waitUntilSilent(isPlayingRef: React.MutableRefObject<boolean>): Promise
 // ── Browser name ──────────────────────────────────────────────────────────────
 const BROWSER = (() => {
   const ua = navigator.userAgent;
-  if (ua.includes('Edg'))     return 'Edge';
-  if (ua.includes('Chrome'))  return 'Chrome';
+  if (ua.includes('Edg')) return 'Edge';
+  if (ua.includes('Chrome')) return 'Chrome';
   if (ua.includes('Firefox')) return 'Firefox';
-  if (ua.includes('Safari'))  return 'Safari';
+  if (ua.includes('Safari')) return 'Safari';
   return 'your browser';
 })();
 
@@ -119,14 +119,14 @@ type ScreenView = 'idle' | 'requesting_mic' | 'connecting' | 'active' | 'mic_den
 
 function toView(status: EVIStatus): ScreenView {
   switch (status) {
-    case 'idle':           return 'idle';
+    case 'idle': return 'idle';
     case 'requesting_mic': return 'requesting_mic';
-    case 'connecting':     return 'connecting';
+    case 'connecting': return 'connecting';
     case 'listening':
     case 'speaking':
-    case 'ended':          return 'active';
-    case 'mic_denied':     return 'mic_denied';
-    case 'error':          return 'error';
+    case 'ended': return 'active';
+    case 'mic_denied': return 'mic_denied';
+    case 'error': return 'error';
   }
 }
 
@@ -149,7 +149,7 @@ function WaveformBars({ isSpeaking, accentColor }: { isSpeaking: boolean; accent
           style={{
             width: '3px', height: '32px', borderRadius: '2px', transformOrigin: 'center',
             background: isSpeaking ? accentColor : 'rgba(255,255,255,0.3)',
-            opacity:    isSpeaking ? 0.85 : 0.25,
+            opacity: isSpeaking ? 0.85 : 0.25,
             transition: 'opacity 0.5s ease, background 0.5s ease',
           }}
         />
@@ -194,10 +194,10 @@ function VoiceScreenInner({
   // ── Sync live values to outer refs every render ───────────────────────────
   // Use layout-effect timing so refs are updated before any microtask that
   // reads them (e.g. the polling loop in waitUntilSilent).
-  useEffect(() => { onIsPlayingChange(isPlaying); },         [isPlaying,         onIsPlayingChange]);
-  useEffect(() => { onVoiceSignalChange(voiceSignal); },     [voiceSignal,        onVoiceSignalChange]);
-  useEffect(() => { onProsodyChange(aggregatedProsody); },   [aggregatedProsody,  onProsodyChange]);
-  useEffect(() => { onRegisterStop(stopEVI); },              [stopEVI,            onRegisterStop]);
+  useEffect(() => { onIsPlayingChange(isPlaying); }, [isPlaying, onIsPlayingChange]);
+  useEffect(() => { onVoiceSignalChange(voiceSignal); }, [voiceSignal, onVoiceSignalChange]);
+  useEffect(() => { onProsodyChange(aggregatedProsody); }, [aggregatedProsody, onProsodyChange]);
+  useEffect(() => { onRegisterStop(stopEVI); }, [stopEVI, onRegisterStop]);
 
   // Natural session end (Hume disconnected without tool call)
   useEffect(() => {
@@ -227,9 +227,9 @@ function VoiceScreenInner({
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [status]);
 
-  const view        = toView(status);
-  const isSpeaking  = status === 'speaking';
-  const isActive    = status === 'listening' || status === 'speaking';
+  const view = toView(status);
+  const isSpeaking = status === 'speaking';
+  const isActive = status === 'listening' || status === 'speaking';
   const accentColor = isActive ? (SIGNAL_CONFIG[voiceSignal]?.color ?? '#4FD1C5') : '#4FD1C5';
 
   // ── Prosody debug panel toggle ────────────────────────────────────────────
@@ -238,8 +238,8 @@ function VoiceScreenInner({
   // Top-5 emotions from aggregated user prosody (for debug panel)
   const top5Prosody = aggregatedProsody
     ? Object.entries(aggregatedProsody)
-        .sort(([, a], [, b]) => b - a)
-        .slice(0, 8)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 8)
     : [];
 
   const handleSkip = useCallback(() => {
@@ -253,7 +253,7 @@ function VoiceScreenInner({
   }, [stopEVI, navigate, voiceSignal]);
 
   return (
-    <div className="flex flex-col min-h-screen" style={{ background: '#0a0a0f', position: 'relative', overflow: 'hidden' }}>
+    <div className="flex flex-col min-h-screen" style={{ position: 'relative', overflow: 'hidden' }}>
 
       {/* Ambient glow */}
       <motion.div
@@ -397,7 +397,7 @@ function VoiceScreenInner({
               <div style={{ position: 'relative' }}>
                 <motion.div
                   animate={{
-                    scale:   isSpeaking ? [1, 1.3, 1] : [1, 1.08, 1],
+                    scale: isSpeaking ? [1, 1.3, 1] : [1, 1.08, 1],
                     opacity: isSpeaking ? [0.18, 0.38, 0.18] : [0.07, 0.16, 0.07],
                   }}
                   transition={{ repeat: Infinity, duration: isSpeaking ? 1.2 : 2.5, ease: 'easeInOut' }}
@@ -443,7 +443,7 @@ function VoiceScreenInner({
                       transition={{ duration: 0.3 }}
                       style={{
                         background: speaker === 'hunch' ? 'rgba(79,209,197,0.06)' : 'rgba(255,255,255,0.04)',
-                        border:     speaker === 'hunch' ? '1px solid rgba(79,209,197,0.2)' : '1px solid rgba(255,255,255,0.08)',
+                        border: speaker === 'hunch' ? '1px solid rgba(79,209,197,0.2)' : '1px solid rgba(255,255,255,0.08)',
                         borderRadius: 16, padding: '16px 20px',
                       }}
                     >
@@ -685,10 +685,10 @@ export function VoiceScreen() {
   // Live refs kept in sync by VoiceScreenInner on every render.
   // The ToolCallHandler (below) reads these without ever being stale —
   // it doesn't need to be inside VoiceProvider to see current values.
-  const isPlayingRef    = useRef(false);
-  const voiceSignalRef  = useRef<SignalName>('umami');
-  const prosodyRef      = useRef<Record<string, number> | null>(null);
-  const stopEVIRef      = useRef<() => void>(() => {});
+  const isPlayingRef = useRef(false);
+  const voiceSignalRef = useRef<SignalName>('umami');
+  const prosodyRef = useRef<Record<string, number> | null>(null);
+  const stopEVIRef = useRef<() => void>(() => { });
 
   // Guard against double-navigation (tool call path vs. natural 'ended' path)
   const navigatedRef = useRef(false);
@@ -699,7 +699,7 @@ export function VoiceScreen() {
     stopEVIRef.current();
     navigate('/compass', {
       state: {
-        voiceSignal:   voiceSignalRef.current,
+        voiceSignal: voiceSignalRef.current,
         prosodyScores: prosodyRef.current,
       },
     });

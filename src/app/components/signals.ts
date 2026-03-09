@@ -1,11 +1,11 @@
 import type { SignalName, SignalValues } from '../store';
 
 export const SIGNAL_CONFIG: Record<SignalName, { color: string; label: string; glow: string }> = {
-  sweet:  { color: '#f7a8c4', label: 'SWEET',  glow: 'rgba(247,168,196,0.4)' },
-  sour:   { color: '#a8e6a3', label: 'SOUR',   glow: 'rgba(168,230,163,0.4)' },
-  bitter: { color: '#8b7ab8', label: 'BITTER', glow: 'rgba(139,122,184,0.4)' },
-  salt:   { color: '#a8d4f7', label: 'SALT',   glow: 'rgba(168,212,247,0.4)' },
-  umami:  { color: '#e8b887', label: 'UMAMI',  glow: 'rgba(232,184,135,0.4)' },
+  sweet: { color: '#ffffff', label: 'SWEET', glow: 'rgba(255,255,255,0.4)' }, // Bright white
+  sour: { color: '#c4c4c4', label: 'SOUR', glow: 'rgba(196,196,196,0.3)' }, // Light grey
+  bitter: { color: '#8c8c8c', label: 'BITTER', glow: 'rgba(140,140,140,0.3)' }, // Mid grey
+  salt: { color: '#dedede', label: 'SALT', glow: 'rgba(222,222,222,0.3)' }, // Soft silver
+  umami: { color: '#a3a3a3', label: 'UMAMI', glow: 'rgba(163,163,163,0.3)' }, // Warm dark grey
 };
 
 export const SIGNAL_ORDER: SignalName[] = ['sweet', 'sour', 'bitter', 'salt', 'umami'];

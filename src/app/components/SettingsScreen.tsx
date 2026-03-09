@@ -104,8 +104,7 @@ export function SettingsScreen() {
 
   return (
     <div
-      className="flex flex-col min-h-screen"
-      style={{ background: '#0a0a0f' }}
+      className="flex flex-col min-h-screen relative"
     >
       {/* Nav bar */}
       <div style={{
@@ -225,7 +224,7 @@ export function SettingsScreen() {
         {DIVIDER}
         <SettingRow
           label="Export my data"
-          onPress={() => {}}
+          onPress={() => { }}
           right={<ChevronRight size={16} color="rgba(255,255,255,0.25)" />}
         />
         {DIVIDER}
