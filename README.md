@@ -173,9 +173,6 @@ The client-side bundle **never** contains secret API keys. CORS is restricted to
 
 ---
 
-## 📄 License
-
-This project is private. All rights reserved.
 
 ---
 
