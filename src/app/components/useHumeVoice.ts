@@ -10,8 +10,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useVoice } from '@humeai/voice-react';
-import { fetchAccessToken } from 'hume';
-import { HUME_API_KEY, HUME_SECRET_KEY, HUME_CONFIG_ID } from '../../config/keys';
+import { HUME_CONFIG_ID } from '../../config/keys';
 import type { EVIStatus } from './VoiceScreen';
 import type { SignalName } from '../store';
 
@@ -85,9 +84,7 @@ export function useHumeVoice(accessToken: string): HumeVoiceState {
   }, []);
 
   const keysConfigured =
-    !!HUME_API_KEY     && HUME_API_KEY     !== 'YOUR_HUME_API_KEY_HERE' &&
-    !!HUME_SECRET_KEY  && HUME_SECRET_KEY  !== 'YOUR_HUME_SECRET_KEY_HERE' &&
-    !!HUME_CONFIG_ID   && HUME_CONFIG_ID   !== 'YOUR_HUME_CONFIG_ID_HERE';
+    !!HUME_CONFIG_ID && HUME_CONFIG_ID !== 'YOUR_HUME_CONFIG_ID_HERE';
 
   // ── Map Hume VoiceStatus → EVIStatus ───────────────────────────────────────
   // NOTE: useVoice() returns `status` as an object { value: string }, NOT a
@@ -136,7 +133,7 @@ export function useHumeVoice(accessToken: string): HumeVoiceState {
           ?.models?.prosody?.scores;
         if (scores && typeof scores === 'object') {
           const sig = topEmotionToSignal(scores);
-          console.log('[useHumeVoice] user prosody → voiceSignal:', sig, scores);
+          if (import.meta.env.DEV) console.log('[useHumeVoice] user prosody → voiceSignal:', sig, scores);
           setVoiceSignal(sig);
           break;
         }
@@ -172,7 +169,7 @@ export function useHumeVoice(accessToken: string): HumeVoiceState {
       .slice(0, 5)
       .map(([e, s]) => `${e} ${(s * 100).toFixed(0)}%`)
       .join(', ');
-    console.log(`[useHumeVoice] aggregated prosody (${count} user turns): ${top5}`);
+    if (import.meta.env.DEV) console.log(`[useHumeVoice] aggregated prosody (${count} user turns): ${top5}`);
     return averaged;
   }, [messages]);
 
@@ -217,21 +214,22 @@ export function useHumeVoice(accessToken: string): HumeVoiceState {
 
     setLocalStatus(micState === 'granted' ? 'connecting' : 'requesting_mic');
 
-    // ── 2. Fetch a fresh token (don't rely on the potentially stale loader token) ──
+    // ── 2. Fetch a fresh token from our server-side proxy ──
     let token = accessToken;
     try {
-      token = await fetchAccessToken({
-        apiKey: String(HUME_API_KEY),
-        secretKey: String(HUME_SECRET_KEY),
-      });
-      console.log('[useHumeVoice] Fresh access token fetched ✓');
+      const tokenRes = await fetch('/api/hume-token', { method: 'POST' });
+      if (tokenRes.ok) {
+        const tokenData = await tokenRes.json() as { accessToken: string };
+        if (tokenData.accessToken) token = tokenData.accessToken;
+      }
+      if (import.meta.env.DEV) console.log('[useHumeVoice] Fresh access token fetched ✓');
     } catch (err) {
-      console.error('[useHumeVoice] fetchAccessToken failed, falling back to loader token:', err);
+      if (import.meta.env.DEV) console.error('[useHumeVoice] token fetch failed, falling back to loader token:', err);
       // If fresh fetch fails, fall back to whatever the loader gave us
     }
 
     if (!token) {
-      console.error('[useHumeVoice] No access token available — aborting connect');
+      if (import.meta.env.DEV) console.error('[useHumeVoice] No access token available — aborting connect');
       setLocalStatus('error');
       return;
     }
@@ -245,7 +243,7 @@ export function useHumeVoice(accessToken: string): HumeVoiceState {
     // targeted "open in new tab" hint instead of a generic error.
     timeoutRef.current = setTimeout(() => {
       const inIframe = window !== window.parent;
-      console.warn('[useHumeVoice] Connection timed out after 8s. inIframe:', inIframe);
+      if (import.meta.env.DEV) console.warn('[useHumeVoice] Connection timed out after 8s. inIframe:', inIframe);
       setErrorHint(inIframe ? 'iframe_ws_blocked' : 'timeout');
       setLocalStatus('error');
     }, 8000);
@@ -274,7 +272,7 @@ NEVER ask a second question. NEVER ask for clarification. NEVER ask the user to 
       })
       .catch((err: Error) => {
         clearConnectTimeout();
-        console.error('[useHumeVoice] connect error:', err);
+        if (import.meta.env.DEV) console.error('[useHumeVoice] connect error:', err);
         setLocalStatus('error');
       });
   }, [connect, accessToken]);

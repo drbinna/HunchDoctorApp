@@ -35,7 +35,7 @@ function prosodyToSignalVector(prosodyScores: Record<string, number>): SignalVal
   if (mapped > 0) {
     for (const key of Object.keys(vec) as SignalName[]) vec[key] /= mapped;
   }
-  console.log('[HunchCompass] prosody signal vector:', vec);
+  if (import.meta.env.DEV) console.log('[HunchCompass] prosody signal vector:', vec);
   return vec;
 }
 
@@ -67,7 +67,7 @@ function fuseAllSources(
   const dominant = (Object.entries(fused) as [SignalName, number][])
     .sort((a, b) => b[1] - a[1])[0][0];
 
-  console.log('[HunchCompass] fusion:', { fusionNote, dominant, fused });
+  if (import.meta.env.DEV) console.log('[HunchCompass] fusion:', { fusionNote, dominant, fused });
   return { signals: fused, dominant, fusionNote };
 }
 
@@ -217,7 +217,7 @@ export function HunchCompass() {
       exprScores = faceResult.expressionScores;
       setUsedCamera(true);
       if (prosodyScores) setVoiceFused(true);
-      console.log('[HunchCompass] face phase done — camera still live for VitalLens');
+      if (import.meta.env.DEV) console.log('[HunchCompass] face phase done — camera still live for VitalLens');
     }
 
     // ── Phase 2: VitalLens hold ───────────────────────────────────────────────
@@ -228,7 +228,7 @@ export function HunchCompass() {
       const remaining = TOTAL_SCAN_MS - elapsed;
       if (remaining > 500) {
         setScanSubLabel('MEASURING VITALS');
-        console.log(`[HunchCompass] VitalLens phase — waiting ${Math.round(remaining / 1000)}s more`);
+        if (import.meta.env.DEV) console.log(`[HunchCompass] VitalLens phase — waiting ${Math.round(remaining / 1000)}s more`);
         await new Promise(r => setTimeout(r, remaining));
       }
       // Now close the camera so VitalLens stops receiving frames
@@ -244,7 +244,7 @@ export function HunchCompass() {
     const newRr = realRr ?? getMockRR();
     setHrIsReal(realHr !== null);
     setRrIsReal(realRr !== null);
-    console.log(`[HunchCompass] vitals — HR: ${realHr ?? `est(${newHr})`}, RR: ${realRr ?? `est(${newRr})`}`);
+    if (import.meta.env.DEV) console.log(`[HunchCompass] vitals — HR: ${realHr ?? `est(${newHr})`}, RR: ${realRr ?? `est(${newRr})`}`);
 
     // ── Signal fusion ─────────────────────────────────────────────────────────
     if (faceResult) {

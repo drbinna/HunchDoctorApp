@@ -18,7 +18,7 @@ import {
   RefreshCw, Wifi, WifiOff, Server, Cpu, Zap,
   UploadCloud, ChevronRight,
 } from 'lucide-react';
-import { VITALLENS_API_KEY } from '../../config/keys';
+// VitalLens API key is server-side only — no client-side import needed
 import { useVitalLens, proxyHealthCheck } from './useVitalLens';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -27,10 +27,8 @@ const RECORD_SEC     = 30;
 const FPS            = 30;
 const WAVEFORM_LEN   = 240;
 
-const maskKey = (k: string) =>
-  k ? `${k.slice(0, 6)}···${k.slice(-4)}` : '(empty)';
-const keyPresent =
-  !!VITALLENS_API_KEY && !VITALLENS_API_KEY.startsWith('YOUR_');
+// VitalLens API key is now server-side only (set via VITALLENS_API_KEY env var on Vercel).
+// This diagnostic screen checks proxy health instead of displaying the raw key.
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type Phase =
@@ -93,7 +91,7 @@ export function VitalLensTestScreen() {
     try {
       const res = await fetch(DIRECT_API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': VITALLENS_API_KEY },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({}),
       });
       const txt = await res.text();
@@ -287,13 +285,13 @@ export function VitalLensTestScreen() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{
             fontSize: 9, letterSpacing: 2, textTransform: 'uppercase', borderRadius: 99, padding: '3px 10px',
-            color: keyPresent ? '#68D391' : '#D96B6B',
-            background: keyPresent ? 'rgba(104,211,145,0.08)' : 'rgba(217,107,107,0.08)',
-            border: `1px solid ${keyPresent ? 'rgba(104,211,145,0.2)' : 'rgba(217,107,107,0.2)'}`,
+            color: '#68D391',
+            background: 'rgba(104,211,145,0.08)',
+            border: '1px solid rgba(104,211,145,0.2)',
             display: 'flex', alignItems: 'center', gap: 5,
           }}>
-            {keyPresent ? <CheckCircle size={10} /> : <XCircle size={10} />}
-            {keyPresent ? `key: ${maskKey(VITALLENS_API_KEY)}` : 'no API key'}
+            <CheckCircle size={10} />
+            key: server-side only
           </span>
         </div>
       </div>

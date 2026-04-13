@@ -15,28 +15,27 @@ import { useNavigate, useLoaderData } from 'react-router';
 import { ExternalLink, ArrowRight, Mic, MicOff, ShieldAlert, X } from 'lucide-react';
 import { VoiceProvider } from '@humeai/voice-react';
 import type { ToolCallHandler } from '@humeai/voice-react';
-import { fetchAccessToken } from 'hume';
 import { AvatarOrb } from './AvatarOrb';
 import type { SignalName } from '../store';
 import { SIGNAL_CONFIG } from './signals';
 import { useHumeVoice } from './useHumeVoice';
-import { HUME_API_KEY, HUME_SECRET_KEY, HUME_CONFIG_ID } from '../../config/keys';
+import { HUME_CONFIG_ID } from '../../config/keys';
 
 // ── voiceLoader ───────────────────────────────────────────────────────────────
 export async function voiceLoader() {
   const keysReady =
-    HUME_API_KEY !== 'YOUR_HUME_API_KEY_HERE' && !!HUME_API_KEY &&
-    HUME_SECRET_KEY !== 'YOUR_HUME_SECRET_KEY_HERE' && !!HUME_SECRET_KEY &&
     HUME_CONFIG_ID !== 'YOUR_HUME_CONFIG_ID_HERE' && !!HUME_CONFIG_ID;
 
   if (!keysReady) return { accessToken: '' };
 
   try {
-    const accessToken = await fetchAccessToken({
-      apiKey: String(HUME_API_KEY),
-      secretKey: String(HUME_SECRET_KEY),
-    });
-    return { accessToken };
+    const res = await fetch('/api/hume-token', { method: 'POST' });
+    if (!res.ok) {
+      console.error('[voiceLoader] Token endpoint returned', res.status);
+      return { accessToken: '' };
+    }
+    const data = await res.json() as { accessToken: string };
+    return { accessToken: data.accessToken || '' };
   } catch (error) {
     console.error('[voiceLoader] Failed to fetch Hume access token:', error);
     return { accessToken: '' };
@@ -716,13 +715,13 @@ export function VoiceScreen() {
   // The Hume SDK treats the tool response as a transition signal — calling it
   // while audio is still playing causes an immediate cut-off.
   const handleToolCall: ToolCallHandler = useCallback(async (toolCall, send) => {
-    console.log('[VoiceScreen] Tool call received:', toolCall.name);
+    if (import.meta.env.DEV) console.log('[VoiceScreen] Tool call received:', toolCall.name);
 
     if (toolCall.name === 'begin_facial_scan') {
       // Wait for Hume to finish speaking its final sentence
-      console.log('[VoiceScreen] Waiting for Hume to finish speaking before responding…');
+      if (import.meta.env.DEV) console.log('[VoiceScreen] Waiting for Hume to finish speaking before responding…');
       await waitUntilSilent(isPlayingRef);
-      console.log('[VoiceScreen] Hume is silent — sending tool success and navigating');
+      if (import.meta.env.DEV) console.log('[VoiceScreen] Hume is silent — sending tool success and navigating');
 
       const response = send.success({ status: 'scan_initiated' });
       navigateToCompass();

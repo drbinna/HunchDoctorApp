@@ -1,22 +1,16 @@
 // ─────────────────────────────────────────────────────────────
-//  HunchDoctor — API Keys Config
+//  HunchDoctor — Client-Side Config
+// ─────────────────────────────────────────────────────────────
+// 🔒 SECURITY: All API keys are server-side only (Vercel env vars).
+//    They are accessed through proxy endpoints:
+//      - /api/claude-proxy     → Anthropic Claude
+//      - /api/hume-token       → Hume EVI access token
+//      - /api/vitallens-proxy  → VitalLens rPPG
+//
+//    NEVER add VITE_ prefixed secrets here — they get bundled
+//    into the client-side JavaScript and are visible to users.
 // ─────────────────────────────────────────────────────────────
 
-// ── VitalLens rPPG (heart rate + respiratory rate) ────────────
-// Key is injected server-side by /api/vitallens-proxy.ts
-// Set VITALLENS_API_KEY in Vercel → Settings → Environment Variables
-// The frontend no longer needs this key directly.
-export const VITALLENS_API_KEY = '';
-
-// ── Anthropic Claude (insight generation) ────────────────────
-export const ANTHROPIC_API_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY || "";
-
-// ── Hume EVI (empathic voice interface) ──────────────────────
-// Find it: platform.hume.ai → API Keys
-export const HUME_API_KEY = import.meta.env.VITE_HUME_API_KEY || "";
-
-// Find it: platform.hume.ai → API Keys (same page, Secret Key column)
-export const HUME_SECRET_KEY = import.meta.env.VITE_HUME_SECRET_KEY || "";
-
+// ── Hume EVI config ID (not a secret — identifies which config to use) ──
 // Find it: platform.hume.ai → EVI → Configurations → your config → ID
 export const HUME_CONFIG_ID = import.meta.env.VITE_HUME_CONFIG_ID || "";

@@ -1,16 +1,16 @@
 /**
- * useClaudeInsight — calls the Anthropic Claude API directly from the browser
- * to generate a real-time, personalised interoceptive insight for HunchDoctor.
+ * useClaudeInsight — generates a real-time, personalised interoceptive insight
+ * for HunchDoctor by calling the Anthropic Claude API through a secure
+ * server-side proxy (/api/claude-proxy).
  *
- * Uses `anthropic-dangerous-direct-browser-access: true` which Anthropic
- * explicitly supports for browser-side API calls.
+ * The API key never touches the browser — it's injected server-side.
  */
 
 import { useState, useCallback } from 'react';
-import { ANTHROPIC_API_KEY } from '../../config/keys';
 import type { SignalName, SignalValues } from '../store';
 
 const MODEL = 'claude-sonnet-4-20250514';
+const PROXY_URL = '/api/claude-proxy';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 export interface InsightParams {
@@ -48,11 +48,6 @@ export function useClaudeInsight() {
   });
 
   const generate = useCallback(async (params: InsightParams) => {
-    if (!ANTHROPIC_API_KEY) {
-      console.warn('[ClaudeInsight] ANTHROPIC_API_KEY not set — skipping');
-      return;
-    }
-
     setState({ insight: null, loading: true, error: false });
 
     const {
@@ -131,13 +126,10 @@ Rules:
 - Do not use quotation marks.`;
 
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const res = await fetch(PROXY_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
         },
         body: JSON.stringify({
           model: MODEL,
@@ -148,7 +140,7 @@ Rules:
 
       if (!res.ok) {
         const body = await res.text().catch(() => '');
-        throw new Error(`Anthropic ${res.status}: ${body}`);
+        throw new Error(`Claude proxy ${res.status}: ${body}`);
       }
 
       const data = await res.json() as {
@@ -156,11 +148,11 @@ Rules:
       };
 
       const text = data.content.find(c => c.type === 'text')?.text?.trim() ?? null;
-      console.log('[ClaudeInsight] insight:', text);
+      if (import.meta.env.DEV) console.log('[ClaudeInsight] insight:', text);
       setState({ insight: text, loading: false, error: false });
 
     } catch (err) {
-      console.error('[ClaudeInsight] generate failed:', err);
+      if (import.meta.env.DEV) console.error('[ClaudeInsight] generate failed:', err);
       setState({ insight: null, loading: false, error: true });
     }
   }, []);

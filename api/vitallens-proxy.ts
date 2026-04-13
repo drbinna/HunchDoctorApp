@@ -27,30 +27,45 @@ export const runtime = 'edge';
 
 const VITALLENS_BASE = 'https://api.rouast.com/vitallens-v3';
 
-const CORS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
-};
+/** Restrict to your deployed domain(s). Update when you go to production. */
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',
+  'http://localhost:4173',
+];
 
-function json(body: unknown, status = 200): Response {
+function getCorsOrigin(req: Request): string {
+  const origin = req.headers.get('origin') ?? '';
+  if (ALLOWED_ORIGINS.includes(origin)) return origin;
+  if (!origin) return '*'; // same-origin requests
+  return ALLOWED_ORIGINS[0];
+}
+
+function corsHeaders(req: Request) {
+  return {
+    'Access-Control-Allow-Origin': getCorsOrigin(req),
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
+  };
+}
+
+function json(body: unknown, status = 200, req?: Request): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'Content-Type': 'application/json', ...CORS },
+    headers: { 'Content-Type': 'application/json', ...(req ? corsHeaders(req) : {}) },
   });
 }
 
 export default async function handler(req: Request): Promise<Response> {
   // ── CORS preflight ────────────────────────────────────────────────────────
   if (req.method === 'OPTIONS') {
-    return new Response(null, { status: 204, headers: CORS });
+    return new Response(null, { status: 204, headers: corsHeaders(req) });
   }
 
   // ── API key from env ──────────────────────────────────────────────────────
   const apiKey = process.env.VITALLENS_API_KEY;
   if (!apiKey) {
     console.error('[vitallens-proxy] VITALLENS_API_KEY env var not set');
-    return json({ error: 'VITALLENS_API_KEY not configured on server' }, 500);
+    return json({ error: 'VITALLENS_API_KEY not configured on server' }, 500, req);
   }
 
   // ── Resolve target endpoint ───────────────────────────────────────────────
@@ -58,7 +73,7 @@ export default async function handler(req: Request): Promise<Response> {
   const endpoint = url.searchParams.get('endpoint') || 'file';
   const allowed = ['file', 'stream', 'resolve-model'];
   if (!allowed.includes(endpoint)) {
-    return json({ error: `Unknown endpoint "${endpoint}". Allowed: ${allowed.join(', ')}` }, 400);
+    return json({ error: `Unknown endpoint "${endpoint}". Allowed: ${allowed.join(', ')}` }, 400, req);
   }
 
   const targetUrl = `${VITALLENS_BASE}/${endpoint}`;
@@ -74,7 +89,7 @@ export default async function handler(req: Request): Promise<Response> {
   fwdHeaders.set('x-api-key', apiKey);
 
   // ── Forward request (body streamed directly — no buffering) ──────────────
-  console.log(`[vitallens-proxy] → ${req.method} ${targetUrl} (key: ${apiKey.slice(0, 6)}…)`);
+  console.log(`[vitallens-proxy] → ${req.method} ${targetUrl}`);
 
   let upstreamRes: Response;
   try {
@@ -87,11 +102,11 @@ export default async function handler(req: Request): Promise<Response> {
     });
   } catch (err) {
     console.error('[vitallens-proxy] upstream fetch failed:', err);
-    return json({ error: 'Failed to reach api.rouast.com', detail: String(err) }, 502);
+    return json({ error: 'Failed to reach api.rouast.com', detail: String(err) }, 502, req);
   }
 
   // ── Stream response back with CORS headers ────────────────────────────────
-  const respHeaders = new Headers(CORS);
+  const respHeaders = new Headers(corsHeaders(req));
   // Forward upstream content-type so clients can parse correctly
   const ct = upstreamRes.headers.get('content-type');
   if (ct) respHeaders.set('content-type', ct);

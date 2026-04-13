@@ -145,7 +145,7 @@ function dominantFreq(signal: number[], fps: number, minHz: number, maxHz: numbe
   // rather than a wildly inaccurate extreme reading.
   const snr = signalPower / (noisePower + 1e-6);
   if (snr < 0.2) {
-    console.warn(`[VitalLens/POS] Low SNR (${snr.toFixed(2)}), returning median bound`);
+    if (import.meta.env.DEV) console.warn(`[VitalLens/POS] Low SNR (${snr.toFixed(2)}), returning median bound`);
     return (minHz + maxHz) / 2;
   }
 
@@ -185,15 +185,15 @@ function extractVitals(data: VitalLensAPIResult): { hr: number | null; rr: numbe
   const hrConf = hrEntry?.confidence ?? 0;
   const rrConf = rrEntry?.confidence ?? 0;
 
-  console.log(`[VitalLens/API Extraction] HR: ${hrVal} (conf: ${hrConf.toFixed(2)}), RR: ${rrVal} (conf: ${rrConf.toFixed(2)})`);
+  if (import.meta.env.DEV) console.log(`[VitalLens/API Extraction] HR: ${hrVal} (conf: ${hrConf.toFixed(2)}), RR: ${rrVal} (conf: ${rrConf.toFixed(2)})`);
 
   // Reject readings with very low confidence
   const MIN_CONFIDENCE = 0.35;
   const isValidHr = hrVal !== null && hrConf >= MIN_CONFIDENCE;
   const isValidRr = rrVal !== null && rrConf >= MIN_CONFIDENCE;
 
-  if (hrVal !== null && !isValidHr) console.warn(`[VitalLens/API] HR rejected due to low confidence (${hrConf.toFixed(2)})`);
-  if (rrVal !== null && !isValidRr) console.warn(`[VitalLens/API] RR rejected due to low confidence (${rrConf.toFixed(2)})`);
+  if (import.meta.env.DEV && hrVal !== null && !isValidHr) console.warn(`[VitalLens/API] HR rejected due to low confidence (${hrConf.toFixed(2)})`);
+  if (import.meta.env.DEV && rrVal !== null && !isValidRr) console.warn(`[VitalLens/API] RR rejected due to low confidence (${rrConf.toFixed(2)})`);
 
   return {
     hr: isValidHr ? Math.round(hrVal) : null,
@@ -229,7 +229,7 @@ async function callVitalLensAPI(
   fps: number,
   onLog?: (msg: string) => void
 ): Promise<{ hr: number | null; rr: number | null } | null> {
-  const log = (m: string) => { console.log(`[VitalLens/API] ${m}`); onLog?.(m); };
+  const log = (m: string) => { if (import.meta.env.DEV) console.log(`[VitalLens/API] ${m}`); onLog?.(m); };
 
   log(`Sending ${(videoBlob.size / 1024).toFixed(0)} KB video to proxy…`);
 
@@ -317,9 +317,9 @@ export function useVitalLens() {
         recorder.start(500); // 500 ms chunks
         recorderRef.current = recorder;
         recordFpsRef.current = stream.getVideoTracks()[0]?.getSettings().frameRate ?? FPS;
-        console.log(`[VitalLens/API] MediaRecorder started (${mimeType || 'default'}, ${recordFpsRef.current} fps)`);
+        if (import.meta.env.DEV) console.log(`[VitalLens/API] MediaRecorder started (${mimeType || 'default'}, ${recordFpsRef.current} fps)`);
       } catch (err) {
-        console.warn('[VitalLens/API] MediaRecorder failed — will use POS only:', err);
+        if (import.meta.env.DEV) console.warn('[VitalLens/API] MediaRecorder failed — will use POS only:', err);
         recorderRef.current = null;
       }
     }
@@ -345,7 +345,7 @@ export function useVitalLens() {
     }, 1000 / FPS);
 
     setScanning(true);
-    console.log('[VitalLens] scan started — both paths armed');
+    if (import.meta.env.DEV) console.log('[VitalLens] scan started — both paths armed');
   }, []);
 
   // ── stopScan ────────────────────────────────────────────────────────────────
@@ -389,10 +389,10 @@ export function useVitalLens() {
 
     // ── PATH B: Local POS fallback ──────────────────────────────────────────
     onLog?.(`POS fallback: ${rgbBuf.length} frames`);
-    console.log(`[VitalLens/POS] analyzing ${rgbBuf.length} frames`);
+    if (import.meta.env.DEV) console.log(`[VitalLens/POS] analyzing ${rgbBuf.length} frames`);
 
     if (rgbBuf.length < MIN_FRAMES) {
-      console.warn(`[VitalLens/POS] too few frames (${rgbBuf.length})`);
+      if (import.meta.env.DEV) console.warn(`[VitalLens/POS] too few frames (${rgbBuf.length})`);
       setMethod('pos');
       return { hr: null, rr: null, method: 'pos' };
     }
@@ -406,11 +406,11 @@ export function useVitalLens() {
       const hr = Math.round(hrFreq * 60);
       const rr = Math.round(rrFreq * 60);
       onLog?.(`POS result: HR=${hr} bpm  RR=${rr}/min`);
-      console.log(`[VitalLens/POS] HR=${hr}bpm RR=${rr}/min`);
+      if (import.meta.env.DEV) console.log(`[VitalLens/POS] HR=${hr}bpm RR=${rr}/min`);
       setMethod('pos');
       return { hr, rr, method: 'pos' };
     } catch (err) {
-      console.warn('[VitalLens/POS] analysis error:', err);
+      if (import.meta.env.DEV) console.warn('[VitalLens/POS] analysis error:', err);
       setMethod('pos');
       return { hr: null, rr: null, method: 'pos' };
     }

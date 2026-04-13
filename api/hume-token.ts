@@ -15,23 +15,38 @@
 
 export const runtime = 'edge';
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin':  '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
+/** Restrict to your deployed domain(s). Update when you go to production. */
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',
+  'http://localhost:4173',
+];
+
+function getCorsOrigin(req: Request): string {
+  const origin = req.headers.get('origin') ?? '';
+  if (ALLOWED_ORIGINS.includes(origin)) return origin;
+  if (!origin) return '*'; // same-origin requests
+  return ALLOWED_ORIGINS[0];
+}
+
+function corsHeaders(req: Request) {
+  return {
+    'Access-Control-Allow-Origin': getCorsOrigin(req),
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
 
 export default async function handler(req: Request): Promise<Response> {
   // Preflight
   if (req.method === 'OPTIONS') {
-    return new Response(null, { status: 204, headers: CORS_HEADERS });
+    return new Response(null, { status: 204, headers: corsHeaders(req) });
   }
 
   // Only allow POST
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      headers: { 'Content-Type': 'application/json', ...corsHeaders(req) },
     });
   }
 
@@ -75,7 +90,7 @@ export default async function handler(req: Request): Promise<Response> {
         headers: {
           'Content-Type': 'application/json',
           'Cache-Control': 'no-store',
-          ...CORS_HEADERS,
+          ...corsHeaders(req),
         },
       },
     );
@@ -83,7 +98,7 @@ export default async function handler(req: Request): Promise<Response> {
     console.error('[hume-token] unexpected error:', err);
     return new Response(
       JSON.stringify({ error: 'Internal server error' }),
-      { status: 500, headers: { 'Content-Type': 'application/json', ...CORS_HEADERS } },
+      { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders(req) } },
     );
   }
 }
